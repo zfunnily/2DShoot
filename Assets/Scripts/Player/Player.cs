@@ -8,11 +8,15 @@ public class Player : MonoBehaviour
     [SerializeField] PlayerInput input;
 
 
-    [SerializeField]float moveSpeed = 10f;
-    [SerializeField]float paddingX= .2f;
-    [SerializeField]float paddingY= .2f;
+    [SerializeField] float moveSpeed = 10f;
+    [SerializeField] float accelerationTime = 3f;
+    [SerializeField] float decelerationTime = 3f;
+    [SerializeField] float paddingX = .2f;
+    [SerializeField] float paddingY = .2f;
 
     new Rigidbody2D rigidbody;
+
+    Coroutine moveCoroutine;
 
     public void Awake() 
     {
@@ -40,17 +44,34 @@ public class Player : MonoBehaviour
 
     void Move(Vector2 moveInput)
     {
-        rigidbody.velocity = moveInput * moveSpeed;
+        if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+
+        moveCoroutine = StartCoroutine(MoveCoroutine(accelerationTime, moveInput.normalized * moveSpeed));
         StartCoroutine(MovePositionLimitCoroutine());
     }
 
     // Update is called once per frame
     void StopMove()
     {
-        rigidbody.velocity = Vector2.zero;
+        if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+
+        moveCoroutine = StartCoroutine(MoveCoroutine(decelerationTime, Vector2.zero));
         StopCoroutine(MovePositionLimitCoroutine());
     }
 
+    IEnumerator MoveCoroutine(float time, Vector2 moveVelocity)
+    {
+        float t = 0f;
+        while (t < time)
+        {
+            t += Time.fixedDeltaTime / time;
+            rigidbody.velocity = Vector2.Lerp(rigidbody.velocity, moveVelocity, t / time);
+            yield return null;
+        }
+    }
+
+
+    // 限制player在view point内
     IEnumerator MovePositionLimitCoroutine()
     {
         while(true)
