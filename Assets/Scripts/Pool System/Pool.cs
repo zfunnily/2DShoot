@@ -6,6 +6,8 @@ using UnityEngine;
 [System.Serializable] public class Pool
 {
     public GameObject Prefab => prefabe;
+    public int Size => size;
+    public int RuntimeSize => queue.Count;
     [SerializeField] GameObject prefabe;
     [SerializeField] int size = 1; 
     Queue<GameObject> queue;
@@ -48,7 +50,7 @@ using UnityEngine;
         return availableObject;
     }
 
-    public GameObject preparedObject()
+    public GameObject PreparedObject()
     {
         GameObject preparedObject = AvailableObjec();
 
@@ -57,7 +59,7 @@ using UnityEngine;
         return  preparedObject;
     }
 
-    public GameObject preparedObject(Vector3 position)
+    public GameObject PreparedObject(Vector3 position)
     {
         GameObject preparedObject = AvailableObjec();
 
@@ -67,7 +69,7 @@ using UnityEngine;
         return  preparedObject;
     }
 
-    public GameObject preparedObject(Vector3 position, Quaternion rotation)
+    public GameObject PreparedObject(Vector3 position, Quaternion rotation)
     {
         GameObject preparedObject = AvailableObjec();
 
@@ -78,7 +80,7 @@ using UnityEngine;
         return  preparedObject;
     }
 
-    public GameObject preparedObject(Vector3 position, Quaternion rotation, Vector3 localScale)
+    public GameObject PreparedObject(Vector3 position, Quaternion rotation, Vector3 localScale)
     {
         GameObject preparedObject = AvailableObjec();
 

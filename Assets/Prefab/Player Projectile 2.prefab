@@ -4964,7 +4964,7 @@ GameObject:
   - component: {fileID: 4001035419433896644}
   - component: {fileID: -5173186536953180762}
   m_Layer: 0
-  m_Name: Player Projectile
+  m_Name: Player Projectile 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5000,7 +5000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
-  moveDirection: {x: 1, y: 0}
+  moveDirection: {x: 1, y: 0.05}
 --- !u!114 &-5173186536953180762
 MonoBehaviour:
   m_ObjectHideFlags: 0

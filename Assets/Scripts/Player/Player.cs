@@ -14,8 +14,13 @@ public class Player : MonoBehaviour
     [SerializeField] float moveRotationAngle = 50f;
     [SerializeField] float paddingX = .2f;
     [SerializeField] float paddingY = .2f;
-    [SerializeField] GameObject projectile;
-    [SerializeField] Transform muzzle;
+    [SerializeField] GameObject projectile1;
+    [SerializeField] GameObject projectile2;
+    [SerializeField] GameObject projectile3;
+    [SerializeField] Transform muzzleMiddle;
+    [SerializeField] Transform muzzleTop;
+    [SerializeField] Transform muzzleBottom;
+    [SerializeField, Range(0, 2)] int weaponPower = 0;
     [SerializeField] float fireInterval = 0.2f;
 
     new Rigidbody2D rigidbody;
@@ -111,8 +116,25 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            PoolManager.Instance.GetProjectil(muzzle.position, Quaternion.identity);
             // Instantiate(projectile, muzzle.position, Quaternion.identity);
+            switch (weaponPower)
+            {
+                case 0:
+                    PoolManager.Release(projectile1, muzzleMiddle.position);
+                    break;
+                case 1:
+                    PoolManager.Release(projectile2, muzzleTop.position);
+                    PoolManager.Release(projectile3, muzzleBottom.position);
+                    break;
+                case 2:
+                    PoolManager.Release(projectile1, muzzleMiddle.position);
+                    PoolManager.Release(projectile2, muzzleTop.position);
+                    PoolManager.Release(projectile3, muzzleBottom.position);
+                    break;
+                default:
+                    break;
+
+            }
 
             yield return waitForSeconds;
         }
