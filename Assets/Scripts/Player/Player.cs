@@ -14,10 +14,14 @@ public class Player : MonoBehaviour
     [SerializeField] float moveRotationAngle = 50f;
     [SerializeField] float paddingX = .2f;
     [SerializeField] float paddingY = .2f;
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform muzzle;
+    [SerializeField] float fireInterval = 0.2f;
 
     new Rigidbody2D rigidbody;
 
     Coroutine moveCoroutine;
+    WaitForSeconds waitForSeconds;
 
     public void Awake() 
     {
@@ -27,7 +31,9 @@ public class Player : MonoBehaviour
     void OnEnable()
     {
         input.onMove += Move;
-        input.onStopMove+= StopMove;
+        input.onStopMove += StopMove;
+        input.onFire += Fire;
+        input.onStopFire += StopFire;
     }
 
     void OnDisable() 
@@ -40,6 +46,9 @@ public class Player : MonoBehaviour
     void Start () 
     {
         rigidbody.gravityScale = 0f;
+
+        waitForSeconds = new WaitForSeconds(fireInterval);
+
         input.EnableGameplayInput();
     }
 
@@ -84,6 +93,27 @@ public class Player : MonoBehaviour
             this.transform.position = Viewport.Instance.PlayerMoveablePosition(this.transform.position, paddingX, paddingY);
 
             yield return null;
+        }
+    }
+
+    
+    void Fire()
+    {
+        StartCoroutine(nameof(FireCoroutine));
+    }
+
+    void StopFire()
+    {
+        StopCoroutine(nameof(FireCoroutine));
+    }
+
+    IEnumerator FireCoroutine()
+    {
+        while (true)
+        {
+            Instantiate(projectile, muzzle.position, Quaternion.identity);
+
+            yield return waitForSeconds;
         }
     }
 }
