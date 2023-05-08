@@ -111,7 +111,8 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(projectile, muzzle.position, Quaternion.identity);
+            PoolManager.Instance.GetProjectil(muzzle.position, Quaternion.identity);
+            // Instantiate(projectile, muzzle.position, Quaternion.identity);
 
             yield return waitForSeconds;
         }
