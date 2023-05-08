@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float accelerationTime = 3f;
     [SerializeField] float decelerationTime = 3f;
+    [SerializeField] float moveRotationAngle = 50f;
     [SerializeField] float paddingX = .2f;
     [SerializeField] float paddingY = .2f;
 
@@ -46,7 +47,9 @@ public class Player : MonoBehaviour
     {
         if (moveCoroutine != null) StopCoroutine(moveCoroutine);
 
-        moveCoroutine = StartCoroutine(MoveCoroutine(accelerationTime, moveInput.normalized * moveSpeed));
+        Quaternion moveRotation = Quaternion.AngleAxis(moveRotationAngle * moveInput.y, Vector3.right);
+
+        moveCoroutine = StartCoroutine(MoveCoroutine(accelerationTime, moveInput.normalized * moveSpeed, moveRotation));
         StartCoroutine(MovePositionLimitCoroutine());
     }
 
@@ -55,17 +58,19 @@ public class Player : MonoBehaviour
     {
         if (moveCoroutine != null) StopCoroutine(moveCoroutine);
 
-        moveCoroutine = StartCoroutine(MoveCoroutine(decelerationTime, Vector2.zero));
+        moveCoroutine = StartCoroutine(MoveCoroutine(decelerationTime, Vector2.zero, Quaternion.identity));
         StopCoroutine(MovePositionLimitCoroutine());
     }
 
-    IEnumerator MoveCoroutine(float time, Vector2 moveVelocity)
+    IEnumerator MoveCoroutine(float time, Vector2 moveVelocity, Quaternion moveRotation)
     {
         float t = 0f;
         while (t < time)
         {
             t += Time.fixedDeltaTime / time;
             rigidbody.velocity = Vector2.Lerp(rigidbody.velocity, moveVelocity, t / time);
+            transform.rotation = Quaternion.Lerp(transform.rotation, moveRotation, t/ time);
+
             yield return null;
         }
     }
