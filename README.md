@@ -11,6 +11,7 @@ https://www.bilibili.com/video/BV1SB4y1w7VY?p=7&vd_source=3b8bb2d4a2160770e25d2a
 6. 后处理-子弹
 7. 射击功能
 8. 对象池
+9. 子弹对象池
 
 ## package
 - Unity UI

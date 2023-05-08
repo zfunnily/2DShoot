@@ -11,6 +11,7 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions
     public event UnityAction onStopMove = delegate{};
     public event UnityAction onFire = delegate{};
     public event UnityAction onStopFire = delegate{};
+    public event UnityAction onWeaponChange = delegate{};
 
     InputActions inputActions;
     void OnEnable()
@@ -57,6 +58,14 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions
         if (context.phase == InputActionPhase.Canceled)
         {
             onStopFire.Invoke();
+        }
+    }
+
+    public void OnWeaponChange(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            onWeaponChange.Invoke();
         }
     }
 }

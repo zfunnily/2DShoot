@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         input.onStopMove += StopMove;
         input.onFire += Fire;
         input.onStopFire += StopFire;
+        input.onWeaponChange += WeaponChange;
     }
 
     void OnDisable() 
@@ -110,6 +111,11 @@ public class Player : MonoBehaviour
     void StopFire()
     {
         StopCoroutine(nameof(FireCoroutine));
+    }
+
+    void WeaponChange()
+    {
+        if (++weaponPower > 2) weaponPower = 0;
     }
 
     IEnumerator FireCoroutine()

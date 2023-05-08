@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "WeaponChange",
+                    "type": "Button",
+                    "id": "80b7750f-51cb-480d-bd6c-b0923109cf46",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -176,6 +185,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "482b70a5-caf6-4a60-8deb-417be73296df",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "WeaponChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

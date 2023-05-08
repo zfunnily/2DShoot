@@ -44,6 +44,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponChange"",
+                    ""type"": ""Button"",
+                    ""id"": ""80b7750f-51cb-480d-bd6c-b0923109cf46"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -200,6 +209,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""482b70a5-caf6-4a60-8deb-417be73296df"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""WeaponChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -232,6 +252,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
+        m_Gameplay_WeaponChange = m_Gameplay.FindAction("WeaponChange", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,12 +314,14 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Fire;
+    private readonly InputAction m_Gameplay_WeaponChange;
     public struct GameplayActions
     {
         private @InputActions m_Wrapper;
         public GameplayActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Fire => m_Wrapper.m_Gameplay_Fire;
+        public InputAction @WeaponChange => m_Wrapper.m_Gameplay_WeaponChange;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -314,6 +337,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
+                @WeaponChange.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnWeaponChange;
+                @WeaponChange.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnWeaponChange;
+                @WeaponChange.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnWeaponChange;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -324,6 +350,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @WeaponChange.started += instance.OnWeaponChange;
+                @WeaponChange.performed += instance.OnWeaponChange;
+                @WeaponChange.canceled += instance.OnWeaponChange;
             }
         }
     }
@@ -341,5 +370,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnWeaponChange(InputAction.CallbackContext context);
     }
 }
