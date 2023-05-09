@@ -10,7 +10,7 @@ public class PlayerProjectile : Projectile
     {
         trail = GetComponentInChildren<TrailRenderer>();
 
-        if (moveDirection != Vector2.right) Quaternion.FromToRotation(Vector2.right, moveDirection);
+        if (moveDirection != Vector2.right) transform.GetChild(0).rotation = Quaternion.FromToRotation(Vector2.right, moveDirection);
     }
 
     void OnDisable() 

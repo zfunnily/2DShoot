@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : MonoBehaviour
+public class Player : Character
 {
+    [SerializeField] bool regenerateHealth = true;
+    [SerializeField] float  healthRegenerateTime;
+    [SerializeField, Range(0, 1)] float  healthRegeneratePercent;
+
+    [Header("---- INPUT ----")]
     [SerializeField] PlayerInput input;
 
 
+    [Header("---- MOVE ----")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float accelerationTime = 3f;
     [SerializeField] float decelerationTime = 3f;
     [SerializeField] float moveRotationAngle = 50f;
     [SerializeField] float paddingX = .2f;
     [SerializeField] float paddingY = .2f;
+
+    [Header("---- FIRE ----")]
     [SerializeField] GameObject projectile1;
     [SerializeField] GameObject projectile2;
     [SerializeField] GameObject projectile3;
@@ -22,19 +30,23 @@ public class Player : MonoBehaviour
     [SerializeField] Transform muzzleBottom;
     [SerializeField, Range(0, 2)] int weaponPower = 0;
     [SerializeField] float fireInterval = 0.2f;
+    WaitForSeconds waitForFireInterval;
+    WaitForSeconds waithealthRegenerateTime;
 
     new Rigidbody2D rigidbody;
 
     Coroutine moveCoroutine;
-    WaitForSeconds waitForSeconds;
+    Coroutine healthRegenerateCoroutine;
 
     public void Awake() 
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         input.onMove += Move;
         input.onStopMove += StopMove;
         input.onFire += Fire;
@@ -53,9 +65,34 @@ public class Player : MonoBehaviour
     {
         rigidbody.gravityScale = 0f;
 
-        waitForSeconds = new WaitForSeconds(fireInterval);
+        waitForFireInterval = new WaitForSeconds(fireInterval);
+        waithealthRegenerateTime = new WaitForSeconds(healthRegenerateTime);
 
         input.EnableGameplayInput();
+
+        TakeDamage(50f);
+    }
+
+    public override void RestoreHealth(float value)
+    {
+        base.RestoreHealth(value);
+
+        Debug.Log("Regenerate health! Current Health: " + health + "\nTime: " + Time.time);
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        if (gameObject.activeSelf)
+        {
+            if (regenerateHealth)
+            {
+                if (healthRegenerateCoroutine != null) StopCoroutine(healthRegenerateCoroutine);
+
+                healthRegenerateCoroutine = StartCoroutine(HealthRegenerateCoroutine(waithealthRegenerateTime, healthRegeneratePercent));
+            }
+        }
     }
 
     void Move(Vector2 moveInput)
@@ -142,7 +179,7 @@ public class Player : MonoBehaviour
 
             }
 
-            yield return waitForSeconds;
+            yield return waitForFireInterval;
         }
     }
 }
