@@ -12,6 +12,7 @@ https://www.bilibili.com/video/BV1SB4y1w7VY?p=7&vd_source=3b8bb2d4a2160770e25d2a
 7. 射击功能
 8. 对象池
 9. 子弹对象池
+10. add 敌人 + 随机敌人位置 + 敌人随机开火
 
 ## package
 - Unity UI

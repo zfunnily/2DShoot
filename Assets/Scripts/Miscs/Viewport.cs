@@ -8,6 +8,7 @@ public class Viewport : Singleton<Viewport>
     float maxX;
     float minY;
     float maxY;
+    float middleX;
 
     void Start() 
     {
@@ -21,6 +22,8 @@ public class Viewport : Singleton<Viewport>
         minY = bottomLeft.y;
         maxX = topRight.x;
         maxY = topRight.y;
+
+        middleX = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f)).x;
     }
 
     public Vector3 PlayerMoveablePosition(Vector3 playerPosition, float paddingX, float paddingY)
@@ -29,6 +32,37 @@ public class Viewport : Singleton<Viewport>
 
         position.x = Mathf.Clamp(playerPosition.x, minX + paddingX, maxX - paddingX);
         position.y = Mathf.Clamp(playerPosition.y, minY + paddingY, maxY - paddingY);
+
+        return position;
+    }
+
+    public Vector3 RandomEnemySpawnPosition(float paddingX, float paddingY)
+    {
+        Vector3 position = Vector3.zero;
+
+        position.x = maxX + paddingX;
+        position.y = Random.Range(minY + paddingY, maxY - paddingY);
+
+        return position;
+    }
+
+    public Vector3 RandomRightHalfPosition(float paddingX, float paddingY)
+    {
+        Vector3 position = Vector3.zero;
+
+        position.x = Random.Range(middleX, maxX - paddingX);
+        position.y = Random.Range(minY + paddingY, maxY - paddingY);
+
+        return position;
+    }
+
+    // enemy all position
+    public Vector3 RandomEnemyMovePosition(float paddingX, float paddingY)
+    {
+        Vector3 position = Vector3.zero;
+
+        position.x = Random.Range(minX + paddingX, maxX - paddingX);
+        position.y = Random.Range(minY + paddingY, maxY - paddingY);
 
         return position;
     }
