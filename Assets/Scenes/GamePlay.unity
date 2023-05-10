@@ -640,6 +640,15 @@ MonoBehaviour:
     size: 10
   - prefabe: {fileID: 3631816006705354620, guid: 25a406d185e337d46af836e4744b9ad1, type: 3}
     size: 10
+  vFXPools:
+  - prefabe: {fileID: 2342042931496088306, guid: 97b415311529fa145aacd3eedaac728e, type: 3}
+    size: 1
+  - prefabe: {fileID: 4801493125213720806, guid: 94d3dff6247d98e4cb4d8d6f0be5e291, type: 3}
+    size: 3
+  - prefabe: {fileID: 1587261729604890, guid: 600ec83cba1cec448bf41a6607229741, type: 3}
+    size: 25
+  - prefabe: {fileID: 5060298685065931927, guid: 6775c68a79b34db4fa2fd4db2a4cdf74, type: 3}
+    size: 10
 --- !u!1 &1273178944
 GameObject:
   m_ObjectHideFlags: 0

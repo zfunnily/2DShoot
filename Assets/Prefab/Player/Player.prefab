@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6970530514149009432}
   - component: {fileID: 5796412890333829044}
   - component: {fileID: 5876278061311250163}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4986,7 +4986,7 @@ GameObject:
   - component: {fileID: 1281738268536560605}
   - component: {fileID: 1376393799410436297}
   - component: {fileID: 1377647496936559839}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9866,7 +9866,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1285621323550890897}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Engine VFX M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9902,7 +9902,7 @@ GameObject:
   - component: {fileID: 1285409510105127801}
   - component: {fileID: 1376246695710668665}
   - component: {fileID: 1376888606040552125}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14582,7 +14582,7 @@ GameObject:
   - component: {fileID: 6490469541439119234}
   - component: {fileID: 7700722064607420462}
   - component: {fileID: 7719786559566199145}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19462,7 +19462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3132810935329942539}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Engine VFX L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19498,7 +19498,7 @@ GameObject:
   - component: {fileID: 3132317421455437027}
   - component: {fileID: 3006119942954434787}
   - component: {fileID: 3005374153817818407}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24178,7 +24178,7 @@ GameObject:
   - component: {fileID: 3127518016363998279}
   - component: {fileID: 3005983310411153235}
   - component: {fileID: 3004156191526609733}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29060,7 +29060,7 @@ GameObject:
   - component: {fileID: 6133238386599142654}
   - component: {fileID: 6154065988265800376}
   - component: {fileID: 6144712877496195444}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29141,7 +29141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6435389009007492522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Engine VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29176,6 +29176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6435389010079767248}
   - component: {fileID: 1397846853}
+  - component: {fileID: 1397846854}
   - component: {fileID: 1397846852}
   m_Layer: 6
   m_Name: Player
@@ -29224,7 +29225,23 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!70 &1397846854
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435389010079767255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.03, y: -0.04}
+  m_Size: {x: 1, y: 0.42}
+  m_Direction: 1
 --- !u!114 &1397846852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29237,7 +29254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d0b9ff487a4804caf8244f76f00e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathVFX: {fileID: 0}
+  deathVFX: {fileID: 1587261729604890, guid: 600ec83cba1cec448bf41a6607229741, type: 3}
   maxHealth: 100
   regenerateHealth: 1
   healthRegenerateTime: 2
@@ -29266,7 +29283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6755641327759177271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Engine VFX R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29302,7 +29319,7 @@ GameObject:
   - component: {fileID: 6755710695093450463}
   - component: {fileID: 6849626647490992863}
   - component: {fileID: 6848878624728669979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33982,7 +33999,7 @@ GameObject:
   - component: {fileID: 6763857008744920699}
   - component: {fileID: 6849487850225493359}
   - component: {fileID: 6848225914552039801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38864,7 +38881,7 @@ GameObject:
   - component: {fileID: 1586794969360445988}
   - component: {fileID: 2795011179814292872}
   - component: {fileID: 2825334556874544335}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Engine Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}

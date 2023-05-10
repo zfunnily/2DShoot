@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3631816006705354621}
   - component: {fileID: 3631816006705354562}
   - component: {fileID: 3631816006705354563}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy Projectile 10 O'clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,10 +43,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3631816006705354620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c17972a7cc575e43b2aee690a58ded9, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b5f7379fc3e59144bf1f0f30d8a22ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destoryGameObject: 0
+  destroyGameObject: 0
   lifetime: 3
 --- !u!114 &3631816006705354563
 MonoBehaviour:
@@ -60,6 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab753b657bda8d488d550667b55fba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitVFX: {fileID: 4801493125213720806, guid: 94d3dff6247d98e4cb4d8d6f0be5e291, type: 3}
+  damage: 1
   moveSpeed: 6
   moveDirection: {x: -1, y: 0.1667}
 --- !u!1 &8376048269999678847
@@ -73,7 +75,7 @@ GameObject:
   - component: {fileID: 7035592381225754031}
   - component: {fileID: 207153340609251620}
   - component: {fileID: 6582697476765336603}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

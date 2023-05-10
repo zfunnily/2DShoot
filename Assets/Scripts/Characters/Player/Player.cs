@@ -117,11 +117,11 @@ public class Player : Character
     IEnumerator MoveCoroutine(float time, Vector2 moveVelocity, Quaternion moveRotation)
     {
         float t = 0f;
-        while (t < time)
+        while (t < 1f)
         {
             t += Time.fixedDeltaTime / time;
-            rigidbody.velocity = Vector2.Lerp(rigidbody.velocity, moveVelocity, t / time);
-            transform.rotation = Quaternion.Lerp(transform.rotation, moveRotation, t/ time);
+            rigidbody.velocity = Vector2.Lerp(rigidbody.velocity, moveVelocity, t);
+            transform.rotation = Quaternion.Lerp(transform.rotation, moveRotation, t);
 
             yield return null;
         }
