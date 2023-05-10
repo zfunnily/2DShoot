@@ -10,11 +10,6 @@ public class Player : Character
     [SerializeField] float  healthRegenerateTime;
     [SerializeField, Range(0, 1)] float  healthRegeneratePercent;
 
-    [Header("---- ENERGY ----")]
-    [SerializeField] StatsBar_HUB statsBar_Energy;
-    [SerializeField] protected float maxEnergy;
-    [SerializeField] protected float energyPercent = 0.2f;
-    protected float energy;
     [Header("---- INPUT ----")]
     [SerializeField] PlayerInput input;
 
@@ -78,7 +73,6 @@ public class Player : Character
         waithealthRegenerateTime = new WaitForSeconds(healthRegenerateTime);
 
         statsBar_HUB.Initialize(health, maxHealth);
-        statsBar_Energy.Initialize(energy, maxEnergy);
 
         input.EnableGameplayInput();
     }
@@ -110,21 +104,10 @@ public class Player : Character
     public override void Die()
     {
         statsBar_HUB.UpdateStats(0f, maxHealth);
-        statsBar_Energy.UpdateStats(0f, maxEnergy);
 
         base.Die();
     }
 
-    public override void TakeEnergy()
-    {
-        base.TakeEnergy();
-
-        if (energy == maxEnergy) return;
-
-        energy = Mathf.Clamp(energy + energyPercent * maxEnergy, 0f, maxEnergy);
-
-        statsBar_Energy.UpdateStats(energy, maxEnergy);
-    }
 
     void Move(Vector2 moveInput)
     {

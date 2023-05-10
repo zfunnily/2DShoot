@@ -144,6 +144,7 @@ MonoBehaviour:
   maxHealth: 12
   showOnHeadHealthBar: 1
   onHeadHealthBar: {fileID: 7817130200045671652}
+  deathEnergyBonus: 5
 --- !u!1 &2100968527171872563
 GameObject:
   m_ObjectHideFlags: 0

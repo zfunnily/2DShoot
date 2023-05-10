@@ -58,8 +58,6 @@ public class Character : MonoBehaviour
         if (showOnHeadHealthBar) onHeadHealthBar.UpdateStats(health, maxHealth);
     }
 
-    public virtual void TakeEnergy() {}
-
     protected IEnumerator HealthRegenerateCoroutine(WaitForSeconds waitTime, float percent)
     {
         while (health < maxHealth)

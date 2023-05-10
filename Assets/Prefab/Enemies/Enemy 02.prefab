@@ -14705,6 +14705,7 @@ MonoBehaviour:
   maxHealth: 8
   showOnHeadHealthBar: 1
   onHeadHealthBar: {fileID: 5996654517731238454}
+  deathEnergyBonus: 4
 --- !u!1001 &1309018312
 PrefabInstance:
   m_ObjectHideFlags: 0
