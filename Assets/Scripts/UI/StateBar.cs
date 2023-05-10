@@ -25,6 +25,11 @@ public class StateBar : MonoBehaviour
         waitForDelayFill = new WaitForSeconds(fillDelay);
     }
 
+    public void OnDisable() 
+    {
+        StopAllCoroutines();
+    }
+
     public virtual void Initialize(float currentValue, float maxValue)
     {
         currentFillAmount = currentValue / maxValue;
@@ -47,6 +52,7 @@ public class StateBar : MonoBehaviour
         {
             fillImageFront.fillAmount = targetFillAmount;
             bufferedFillingCoroutine = StartCoroutine(BufferedFillingCoroutine(fillImageBack));
+            return;
         }
 
         // if stats increase 

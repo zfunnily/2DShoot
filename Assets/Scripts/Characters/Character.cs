@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
     {
         health -= damage;
 
-        if (showOnHeadHealthBar) onHeadHealthBar.UpdateStats(health, maxHealth);
+        if (showOnHeadHealthBar && gameObject.activeSelf) onHeadHealthBar.UpdateStats(health, maxHealth);
 
         if (health <= 0f) Die();
     }
