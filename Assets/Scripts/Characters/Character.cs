@@ -12,7 +12,6 @@ public class Character : MonoBehaviour
     [SerializeField] StateBar onHeadHealthBar;
 
     protected float health;
-
     protected virtual void OnEnable() 
     {
         health = maxHealth;
@@ -58,6 +57,8 @@ public class Character : MonoBehaviour
 
         if (showOnHeadHealthBar) onHeadHealthBar.UpdateStats(health, maxHealth);
     }
+
+    public virtual void TakeEnergy() {}
 
     protected IEnumerator HealthRegenerateCoroutine(WaitForSeconds waitTime, float percent)
     {

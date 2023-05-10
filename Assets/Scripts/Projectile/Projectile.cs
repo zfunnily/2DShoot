@@ -30,6 +30,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Character>(out Character character)) 
         {
             character.TakeDamage(damage);
+            character.TakeEnergy();
 
             // var contackPoint = collision.GetContact(0);
             // PoolManager.Release(hitVFX, contackPoint.point, Quaternion.LookRotation(contackPoint.normal));
