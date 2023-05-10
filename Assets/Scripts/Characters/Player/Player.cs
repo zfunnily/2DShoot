@@ -31,6 +31,18 @@ public class Player : Character
     [SerializeField] Transform muzzleBottom;
     [SerializeField, Range(0, 2)] int weaponPower = 0;
     [SerializeField] float fireInterval = 0.2f;
+
+    [Header("---- DODGE ----")]
+    [SerializeField, Range(0,100)] int dodgeEnergyCost = 25;
+    [SerializeField] float maxRoll = 720f;
+    [SerializeField] float rollSpeed = 360f; // 
+    [SerializeField] Vector3 dodgeScale = new Vector3(0.5f, 0.5f, 0.5f);
+    
+    float currentRoll = 0f;
+    bool isDodging = false;
+    float dodgeDuration;
+    new Collider2D collider;
+
     WaitForSeconds waitForFireInterval;
     WaitForSeconds waithealthRegenerateTime;
 
@@ -42,6 +54,9 @@ public class Player : Character
     public void Awake() 
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
+
+        dodgeDuration = maxRoll / rollSpeed;
     }
 
     protected override void OnEnable()
@@ -53,6 +68,7 @@ public class Player : Character
         input.onFire += Fire;
         input.onStopFire += StopFire;
         input.onWeaponChange += WeaponChange;
+        input.onDodge += Dodge;
     }
 
     void OnDisable() 
@@ -62,6 +78,7 @@ public class Player : Character
         input.onFire -= Fire;
         input.onStopFire -= StopFire;
         input.onWeaponChange -= WeaponChange;
+        input.onDodge -= Dodge;
     }
 
     // Start is called before the first frame update
@@ -167,7 +184,6 @@ public class Player : Character
     {
         if (++weaponPower > 2) weaponPower = 0;
     }
-
     IEnumerator FireCoroutine()
     {
         while (true)
@@ -194,5 +210,76 @@ public class Player : Character
 
             yield return waitForFireInterval;
         }
+    }
+    
+    void Dodge()
+    {
+        if (isDodging || !PlayerEnergy.Instance.IsEnough(dodgeEnergyCost)) return;
+
+        StartCoroutine(nameof(DodgeCoroutine));
+        
+    }
+
+    IEnumerator DodgeCoroutine()
+    {
+        isDodging = true;
+        // 1. Cost energy 
+        // 2. Make player invincible 让玩家无敌
+        // 3. Make player rotate alone x axis 让玩家沿着x轴旋转
+        // 4. Change player's scale 改变玩家的缩放值
+
+        PlayerEnergy.Instance.Use(dodgeEnergyCost);
+
+        // 2 start
+        collider.isTrigger = true;
+
+        // 3
+        currentRoll = 0f;
+
+        // var scale = transform.localScale;
+        var t1 = 0f;
+        var t2 = 0f;
+
+        while (currentRoll < maxRoll)
+        {
+            currentRoll += rollSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.AngleAxis(currentRoll, Vector3.right);
+
+            if (currentRoll < maxRoll / 2f)
+            {
+                // 方法一
+                // scale -= (Time.deltaTime / dodgeDuration) * Vector3.one;
+
+                // 方法二
+                // scale.x = Mathf.Clamp(scale.x - Time.deltaTime / dodgeDuration, dodgeScale.x, 1f);
+                // scale.y = Mathf.Clamp(scale.y - Time.deltaTime / dodgeDuration, dodgeScale.y, 1f);
+                // scale.z = Mathf.Clamp(scale.z - Time.deltaTime / dodgeDuration, dodgeScale.z, 1f);
+
+                // 方法三
+                t1 += Time.deltaTime / dodgeDuration;
+                transform.localScale = Vector3.Lerp(transform.localScale, dodgeScale, t1);
+            }
+            else
+            {
+                // scale += (Time.deltaTime / dodgeDuration) * Vector3.one;
+
+                // scale.x = Mathf.Clamp(scale.x + Time.deltaTime / dodgeDuration, dodgeScale.x, 1f);
+                // scale.y = Mathf.Clamp(scale.y + Time.deltaTime / dodgeDuration, dodgeScale.y, 1f);
+                // scale.z = Mathf.Clamp(scale.z + Time.deltaTime / dodgeDuration, dodgeScale.z, 1f);
+
+                t2 += Time.deltaTime / dodgeDuration;
+                transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, t2);
+            }
+
+            // 限制缩放大小
+            // transform.localScale = scale;
+
+            yield return null;
+        }
+
+        
+        // 2 end
+        collider.isTrigger = false;
+        isDodging = false;
     }
 }
