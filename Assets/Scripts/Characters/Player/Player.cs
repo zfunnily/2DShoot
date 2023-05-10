@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : Character
 {
+    [SerializeField] StatsBar_HUB statsBar_HUB;
     [SerializeField] bool regenerateHealth = true;
     [SerializeField] float  healthRegenerateTime;
     [SerializeField, Range(0, 1)] float  healthRegeneratePercent;
@@ -58,6 +59,9 @@ public class Player : Character
     {
         input.onMove -= Move;
         input.onStopMove -= StopMove;
+        input.onFire -= Fire;
+        input.onStopFire -= StopFire;
+        input.onWeaponChange -= WeaponChange;
     }
 
     // Start is called before the first frame update
@@ -68,14 +72,15 @@ public class Player : Character
         waitForFireInterval = new WaitForSeconds(fireInterval);
         waithealthRegenerateTime = new WaitForSeconds(healthRegenerateTime);
 
-        input.EnableGameplayInput();
+        statsBar_HUB.Initialize(health, maxHealth);
 
-        TakeDamage(50f);
+        input.EnableGameplayInput();
     }
 
     public override void RestoreHealth(float value)
     {
         base.RestoreHealth(value);
+        statsBar_HUB.UpdateStats(health, maxHealth);
 
         Debug.Log("Regenerate health! Current Health: " + health + "\nTime: " + Time.time);
     }
@@ -83,6 +88,7 @@ public class Player : Character
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+        statsBar_HUB.UpdateStats(health, maxHealth);
 
         if (gameObject.activeSelf)
         {
@@ -93,6 +99,13 @@ public class Player : Character
                 healthRegenerateCoroutine = StartCoroutine(HealthRegenerateCoroutine(waithealthRegenerateTime, healthRegeneratePercent));
             }
         }
+    }
+
+    public override void Die()
+    {
+        statsBar_HUB.UpdateStats(0f, maxHealth);
+
+        base.Die();
     }
 
     void Move(Vector2 moveInput)

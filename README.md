@@ -1,5 +1,6 @@
 ## 2DShoot
 https://www.bilibili.com/video/BV1SB4y1w7VY?p=7&vd_source=3b8bb2d4a2160770e25d2a56b850c4b9
+粒子特效入门: https://www.bilibili.com/video/BV1io4y1m7FH/?vd_source=3b8bb2d4a2160770e25d2a56b850c4b9
 
 
 ## 实现过程
@@ -15,6 +16,7 @@ https://www.bilibili.com/video/BV1SB4y1w7VY?p=7&vd_source=3b8bb2d4a2160770e25d2a
 10. add 敌人 + 随机敌人位置 + 敌人随机开火
 11. 生命值系统
 12. 物理碰撞系统
+13. 能量条
 
 ## 触发器的触发条件
 1. 两个游戏对象中至少一个拥有动态/运动学刚体组件

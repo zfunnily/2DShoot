@@ -8,17 +8,35 @@ public class Character : MonoBehaviour
 
     [Header("---- HEALTH ----")]
     [SerializeField] protected float maxHealth;
+    [SerializeField] bool showOnHeadHealthBar = true;
+    [SerializeField] StateBar onHeadHealthBar;
 
     protected float health;
 
     protected virtual void OnEnable() 
     {
         health = maxHealth;
+
+        if (showOnHeadHealthBar) ShowOnHeadHealthBar();
+        else HideOnHeadHealthBar();
+    }
+
+    public void ShowOnHeadHealthBar()
+    {
+        onHeadHealthBar.gameObject.SetActive(true);
+        onHeadHealthBar.Initialize(health, maxHealth);
+    }
+
+    public void HideOnHeadHealthBar()
+    {
+        onHeadHealthBar.gameObject.SetActive(false);
     }
 
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+
+        if (showOnHeadHealthBar) onHeadHealthBar.UpdateStats(health, maxHealth);
 
         if (health <= 0f) Die();
     }
@@ -37,6 +55,8 @@ public class Character : MonoBehaviour
         // health += value;
         // health = Mathf.Clamp(health, 0f, maxHealth);
         health = Mathf.Clamp(health + value, 0f, maxHealth);
+
+        if (showOnHeadHealthBar) onHeadHealthBar.UpdateStats(health, maxHealth);
     }
 
     protected IEnumerator HealthRegenerateCoroutine(WaitForSeconds waitTime, float percent)
