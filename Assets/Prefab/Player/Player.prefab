@@ -30118,6 +30118,10 @@ MonoBehaviour:
   muzzleBottom: {fileID: 1711688329}
   weaponPower: 0
   fireInterval: 0.12
+  dodgeEnergyCost: 25
+  maxRoll: 360
+  rollSpeed: 360
+  dodgeScale: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!114 &1397846855
 MonoBehaviour:
   m_ObjectHideFlags: 0

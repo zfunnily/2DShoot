@@ -532,10 +532,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 1397846852, guid: 69bf9c8dfe6a9e5479d5093236b17108, type: 3}
-      propertyPath: maxRoll
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 6435389010079767248, guid: 69bf9c8dfe6a9e5479d5093236b17108, type: 3}
       propertyPath: m_RootOrder
       value: 1
