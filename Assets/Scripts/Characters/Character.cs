@@ -22,13 +22,15 @@ public class Character : MonoBehaviour
 
     public void ShowOnHeadHealthBar()
     {
+        if (onHeadHealthBar == null) return;
+
         onHeadHealthBar.gameObject.SetActive(true);
         onHeadHealthBar.Initialize(health, maxHealth);
     }
 
     public void HideOnHeadHealthBar()
     {
-        onHeadHealthBar.gameObject.SetActive(false);
+       if (onHeadHealthBar != null) onHeadHealthBar.gameObject.SetActive(false);
     }
 
     public virtual void TakeDamage(float damage)

@@ -237,16 +237,16 @@ public class Player : Character
         currentRoll = 0f;
 
         // var scale = transform.localScale;
-        var t1 = 0f;
-        var t2 = 0f;
+        // var t1 = 0f;
+        // var t2 = 0f;
 
-        while (currentRoll < maxRoll)
-        {
-            currentRoll += rollSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.AngleAxis(currentRoll, Vector3.right);
+        // while (currentRoll < maxRoll)
+        // {
+            // currentRoll += rollSpeed * Time.deltaTime;
+            // transform.rotation = Quaternion.AngleAxis(currentRoll, Vector3.right);
 
-            if (currentRoll < maxRoll / 2f)
-            {
+            // if (currentRoll < maxRoll / 2f)
+            // {
                 // 方法一
                 // scale -= (Time.deltaTime / dodgeDuration) * Vector3.one;
 
@@ -256,23 +256,32 @@ public class Player : Character
                 // scale.z = Mathf.Clamp(scale.z - Time.deltaTime / dodgeDuration, dodgeScale.z, 1f);
 
                 // 方法三
-                t1 += Time.deltaTime / dodgeDuration;
-                transform.localScale = Vector3.Lerp(transform.localScale, dodgeScale, t1);
-            }
-            else
-            {
+                // t1 += Time.deltaTime / dodgeDuration;
+                // transform.localScale = Vector3.Lerp(transform.localScale, dodgeScale, t1);
+
+            // }
+            // else
+            // {
                 // scale += (Time.deltaTime / dodgeDuration) * Vector3.one;
 
                 // scale.x = Mathf.Clamp(scale.x + Time.deltaTime / dodgeDuration, dodgeScale.x, 1f);
                 // scale.y = Mathf.Clamp(scale.y + Time.deltaTime / dodgeDuration, dodgeScale.y, 1f);
                 // scale.z = Mathf.Clamp(scale.z + Time.deltaTime / dodgeDuration, dodgeScale.z, 1f);
 
-                t2 += Time.deltaTime / dodgeDuration;
-                transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, t2);
-            }
+                // t2 += Time.deltaTime / dodgeDuration;
+                // transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, t2);
+            // }
 
-            // 限制缩放大小
-            // transform.localScale = scale;
+            // yield return null;
+        // }
+
+        // 方法四
+        while (currentRoll < maxRoll)
+        {
+            currentRoll += rollSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.AngleAxis(currentRoll, Vector3.right);
+
+            transform.localScale = BezierCurve.QuadraticPoint(Vector3.one, Vector3.one, dodgeScale, currentRoll / maxRoll);
 
             yield return null;
         }
