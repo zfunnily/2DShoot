@@ -35,6 +35,7 @@ public class Projectile : MonoBehaviour
             // PoolManager.Release(hitVFX, contackPoint.point, Quaternion.LookRotation(contackPoint.normal));
 
             PoolManager.Release(hitVFX, collision.GetContact(0).point, Quaternion.LookRotation(collision.GetContact(0).normal));
+            gameObject.SetActive(false);
         }
     }
 }

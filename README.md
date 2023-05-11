@@ -18,6 +18,7 @@ https://www.bilibili.com/video/BV1SB4y1w7VY?p=7&vd_source=3b8bb2d4a2160770e25d2a
 12. 物理碰撞系统
 13. 能量条
 14. 闪避系统
+15. 实时生成敌人
 
 ## 触发器的触发条件
 1. 两个游戏对象中至少一个拥有动态/运动学刚体组件

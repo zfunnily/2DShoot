@@ -5,8 +5,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Header("----- MOVE -----")]
-    [SerializeField] float paddingX;
-    [SerializeField] float paddingY;
     [SerializeField] float moveSpeed = 2f;
     [SerializeField] float moveRotationAngle = 25f;
 
@@ -15,6 +13,19 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Transform muzzle;
     [SerializeField] float minFireInterval;
     [SerializeField] float maxFireInterval;
+
+    float paddingX;
+    float paddingY;
+    Vector3 targetPosition;
+
+    WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
+
+    protected virtual void Awake() 
+    {
+        var size = transform.GetChild(0).GetComponent<Renderer>().bounds.size;
+        paddingX = size.x / 2f;
+        paddingY = size.y / 2f;
+    }
 
     void OnEnable() 
     {
@@ -31,7 +42,7 @@ public class EnemyController : MonoBehaviour
     {
         transform.position = Viewport.Instance.RandomEnemySpawnPosition(paddingX, paddingY);
 
-        Vector3 targetPosition = Viewport.Instance.RandomRightHalfPosition(paddingX, paddingY);
+        targetPosition = Viewport.Instance.RandomRightHalfPosition(paddingX, paddingY);
 
         while (gameObject.activeSelf)
         {
@@ -41,17 +52,20 @@ public class EnemyController : MonoBehaviour
             // else
             // set a new targetPosition
 
-            if (Vector3.Distance(transform.position, targetPosition) > Mathf.Epsilon)
+            if (Vector3.Distance(transform.position, targetPosition) >= moveSpeed * Time.fixedDeltaTime)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.fixedDeltaTime);
                 transform.rotation = Quaternion.AngleAxis((targetPosition - transform.position).normalized.y * moveRotationAngle, Vector3.right);
+
+                Debug.Log("position: " + transform.position + ";\n target:" + targetPosition);
+                Debug.Log("epsilon: " + Vector3.Distance(transform.position, targetPosition));
             }
             else
             {
                 targetPosition = Viewport.Instance.RandomRightHalfPosition(paddingX, paddingY);
             }
 
-            yield return null;
+            yield return waitForFixedUpdate;
         }
     }
 

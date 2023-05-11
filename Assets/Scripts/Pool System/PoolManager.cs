@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class PoolManager :  MonoBehaviour
 {
+    [SerializeField] Pool[] enemyPools;
     [SerializeField] Pool[] playerProjectilePools;
     [SerializeField] Pool[] enemyProjectilePools;
     [SerializeField] Pool[] vFXPools;
 
     static Dictionary<GameObject, Pool> dictionary;
 
-    void Start() 
+    void Awake() 
     {
         dictionary = new Dictionary<GameObject, Pool>();
 
+        Initialized(enemyPools);
         Initialized(playerProjectilePools);
         Initialized(enemyProjectilePools);
         Initialized(vFXPools);
     }
 
     #if UNITY_EDITOR
-    void OnDestroy() {
+    void OnDestroy() 
+    {
+        CheckPoolSize(enemyPools);
         CheckPoolSize(playerProjectilePools);
         CheckPoolSize(enemyProjectilePools);
         CheckPoolSize(vFXPools);
