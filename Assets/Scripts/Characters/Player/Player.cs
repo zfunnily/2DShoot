@@ -31,8 +31,10 @@ public class Player : Character
     [SerializeField] Transform muzzleBottom;
     [SerializeField, Range(0, 2)] int weaponPower = 0;
     [SerializeField] float fireInterval = 0.2f;
+    [SerializeField] AudioData projectileLaunchSFX;
 
     [Header("---- DODGE ----")]
+    [SerializeField] AudioData dodgeSFX;
     [SerializeField, Range(0,100)] int dodgeEnergyCost = 25;
     [SerializeField] float maxRoll = 720f;
     [SerializeField] float rollSpeed = 360f; // 
@@ -133,7 +135,8 @@ public class Player : Character
         Quaternion moveRotation = Quaternion.AngleAxis(moveRotationAngle * moveInput.y, Vector3.right);
 
         moveCoroutine = StartCoroutine(MoveCoroutine(accelerationTime, moveInput.normalized * moveSpeed, moveRotation));
-        StartCoroutine(MovePositionLimitCoroutine());
+
+        StartCoroutine(nameof(MovePositionLimitCoroutine));
     }
 
     // Update is called once per frame
@@ -142,7 +145,8 @@ public class Player : Character
         if (moveCoroutine != null) StopCoroutine(moveCoroutine);
 
         moveCoroutine = StartCoroutine(MoveCoroutine(decelerationTime, Vector2.zero, Quaternion.identity));
-        StopCoroutine(MovePositionLimitCoroutine());
+
+        StopCoroutine(nameof(MovePositionLimitCoroutine));
     }
 
     IEnumerator MoveCoroutine(float time, Vector2 moveVelocity, Quaternion moveRotation)
@@ -208,6 +212,8 @@ public class Player : Character
 
             }
 
+            AudioManager.Instance.PlayRandomSFX(projectileLaunchSFX);
+
             yield return waitForFireInterval;
         }
     }
@@ -223,6 +229,7 @@ public class Player : Character
     IEnumerator DodgeCoroutine()
     {
         isDodging = true;
+        AudioManager.Instance.PlayerSFX(dodgeSFX);
         // 1. Cost energy 
         // 2. Make player invincible 让玩家无敌
         // 3. Make player rotate alone x axis 让玩家沿着x轴旋转

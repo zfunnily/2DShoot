@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemyManager : Singleton<EnemyManager>
 {
-    [SerializeField] bool spawnEnemy = true;
+    public int WaveNumber => waveNumber;
+    public float TimeBetweenWaves => timeBetweenWaves;
+    [SerializeField] bool spawnEnemy = true; // 产生敌人开关
+    [SerializeField] GameObject waveUI;
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] float timeBetweenSpawns = 1f; // 敌人生成时间间隔
     [SerializeField] float timeBetweenWaves = 1f; // 等待下一波时间
@@ -35,8 +38,14 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         while (spawnEnemy)
         {
-            yield return waitUnitlNoEnemy;
-            yield return waitTimeBetweenWaves;
+            yield return waitUnitlNoEnemy; // 检测敌人数量=0，产生敌人
+
+            waveUI.SetActive(true);
+
+            yield return waitTimeBetweenWaves; // 等待下一波
+
+            waveUI.SetActive(false);
+
             yield return StartCoroutine(nameof(RandomlySpawnCoroutine));
         }
     }

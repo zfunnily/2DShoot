@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float minFireInterval;
     [SerializeField] float maxFireInterval;
 
+    [SerializeField] AudioData projectileLaunchSFX;
+
     float paddingX;
     float paddingY;
     Vector3 targetPosition;
@@ -56,9 +58,6 @@ public class EnemyController : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.fixedDeltaTime);
                 transform.rotation = Quaternion.AngleAxis((targetPosition - transform.position).normalized.y * moveRotationAngle, Vector3.right);
-
-                Debug.Log("position: " + transform.position + ";\n target:" + targetPosition);
-                Debug.Log("epsilon: " + Vector3.Distance(transform.position, targetPosition));
             }
             else
             {
@@ -78,6 +77,7 @@ public class EnemyController : MonoBehaviour
             foreach (var projectile in projectiles)
             {
                 PoolManager.Release(projectile, muzzle.position);
+                AudioManager.Instance.PlayRandomSFX(projectileLaunchSFX);
             }
         }
     }

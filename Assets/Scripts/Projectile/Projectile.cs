@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] GameObject hitVFX;
+    [SerializeField] AudioData[] hitSFX;
     [SerializeField] float damage;
     [SerializeField] protected float moveSpeed = 10f;
     [SerializeField] protected Vector2 moveDirection;
@@ -35,6 +36,9 @@ public class Projectile : MonoBehaviour
             // PoolManager.Release(hitVFX, contackPoint.point, Quaternion.LookRotation(contackPoint.normal));
 
             PoolManager.Release(hitVFX, collision.GetContact(0).point, Quaternion.LookRotation(collision.GetContact(0).normal));
+
+            AudioManager.Instance.PlayRandomSFX(hitSFX);
+
             gameObject.SetActive(false);
         }
     }
