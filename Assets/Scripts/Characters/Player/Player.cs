@@ -43,15 +43,16 @@ public class Player : Character
     float currentRoll = 0f;
     bool isDodging = false;
     float dodgeDuration;
-    new Collider2D collider;
-
+    float t = 0f;
+    Vector2 previousVelocity; 
+    Quaternion previousRotation;
     WaitForSeconds waitForFireInterval;
     WaitForSeconds waithealthRegenerateTime;
-
-    new Rigidbody2D rigidbody;
-
+    WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate(); 
     Coroutine moveCoroutine;
     Coroutine healthRegenerateCoroutine;
+    new Rigidbody2D rigidbody;
+    new Collider2D collider;
 
     public void Awake() 
     {
@@ -151,14 +152,18 @@ public class Player : Character
 
     IEnumerator MoveCoroutine(float time, Vector2 moveVelocity, Quaternion moveRotation)
     {
-        float t = 0f;
+        t = 0f;
+        previousVelocity = rigidbody.velocity;
+        previousRotation = transform.rotation;
+
         while (t < 1f)
         {
             t += Time.fixedDeltaTime / time;
+
             rigidbody.velocity = Vector2.Lerp(rigidbody.velocity, moveVelocity, t);
             transform.rotation = Quaternion.Lerp(transform.rotation, moveRotation, t);
 
-            yield return null;
+            yield return waitForFixedUpdate;
         }
     }
 
