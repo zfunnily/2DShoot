@@ -30,7 +30,7 @@ public class Player : Character
     [SerializeField] Transform muzzleTop;
     [SerializeField] Transform muzzleBottom;
     [SerializeField, Range(0, 2)] int weaponPower = 0;
-    [SerializeField] float fireInterval = 0.2f;
+    [SerializeField] float fireInterval = 0.12f;
     [SerializeField] AudioData projectileLaunchSFX;
 
     [Header("---- DODGE ----")]
@@ -39,14 +39,22 @@ public class Player : Character
     [SerializeField] float maxRoll = 720f;
     [SerializeField] float rollSpeed = 360f; // 
     [SerializeField] Vector3 dodgeScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+    [Header("---- OVERDRIVE ----")]
+    [SerializeField] int overdriveDodgeFactor = 2;
+    [SerializeField] float overdriveSpeedFactor = 1.2f;
+    [SerializeField] float overdriveFireFactor = 1.2f;
+    bool isOverdriving = false;
     
-    float currentRoll = 0f;
     bool isDodging = false;
     float dodgeDuration;
+    float currentRoll = 0f;
+
     float t = 0f;
     Vector2 previousVelocity; 
     Quaternion previousRotation;
     WaitForSeconds waitForFireInterval;
+    WaitForSeconds waitForOverdriveFireInterval;
     WaitForSeconds waithealthRegenerateTime;
     WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate(); 
     Coroutine moveCoroutine;
@@ -60,6 +68,12 @@ public class Player : Character
         collider = GetComponent<Collider2D>();
 
         dodgeDuration = maxRoll / rollSpeed;
+
+        rigidbody.gravityScale = 0f;
+
+        waitForFireInterval = new WaitForSeconds(fireInterval);
+        waitForOverdriveFireInterval = new WaitForSeconds(fireInterval / overdriveFireFactor);
+        waithealthRegenerateTime = new WaitForSeconds(healthRegenerateTime);
     }
 
     protected override void OnEnable()
@@ -72,6 +86,10 @@ public class Player : Character
         input.onStopFire += StopFire;
         input.onWeaponChange += WeaponChange;
         input.onDodge += Dodge;
+        input.onOverdrive += Overdrive;
+
+        PlayerOverdrive.on += OverdriveOn;
+        PlayerOverdrive.off += OverdriveOff;
     }
 
     void OnDisable() 
@@ -82,15 +100,16 @@ public class Player : Character
         input.onStopFire -= StopFire;
         input.onWeaponChange -= WeaponChange;
         input.onDodge -= Dodge;
+        input.onOverdrive -= Overdrive;
+
+        PlayerOverdrive.on -= OverdriveOn;
+        PlayerOverdrive.off -= OverdriveOff;
     }
 
     // Start is called before the first frame update
     void Start () 
     {
-        rigidbody.gravityScale = 0f;
-
-        waitForFireInterval = new WaitForSeconds(fireInterval);
-        waithealthRegenerateTime = new WaitForSeconds(healthRegenerateTime);
+        
 
         statsBar_HUB.Initialize(health, maxHealth);
 
@@ -219,7 +238,8 @@ public class Player : Character
 
             AudioManager.Instance.PlayRandomSFX(projectileLaunchSFX);
 
-            yield return waitForFireInterval;
+            yield return isOverdriving?waitForOverdriveFireInterval:waitForFireInterval;
+
         }
     }
     
@@ -302,5 +322,26 @@ public class Player : Character
         // 2 end
         collider.isTrigger = false;
         isDodging = false;
+    }
+
+        
+    void Overdrive()
+    {
+        if (!PlayerEnergy.Instance.IsEnough(PlayerEnergy.MAX)) return;
+
+        PlayerOverdrive.on.Invoke();
+    }
+
+    void OverdriveOn()
+    {
+        isOverdriving = true;
+        dodgeEnergyCost *= overdriveDodgeFactor;
+        moveSpeed *= overdriveSpeedFactor;
+    }
+    void OverdriveOff()
+    {
+        isOverdriving = false;
+        dodgeEnergyCost /= overdriveDodgeFactor;
+        moveSpeed /= overdriveSpeedFactor;
     }
 }

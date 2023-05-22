@@ -22,7 +22,13 @@ public class AutoDeactivate : MonoBehaviour
     {
         yield return waitLifetime;
 
-        if (destroyGameObject) Destroy(gameObject);
-        else gameObject.SetActive(false);
+        if (destroyGameObject)
+        {
+            Destroy(gameObject);
+        }
+        else 
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

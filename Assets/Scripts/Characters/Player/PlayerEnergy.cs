@@ -5,9 +5,31 @@ using UnityEngine;
 public class PlayerEnergy : Singleton<PlayerEnergy>
 {
     [SerializeField] EnergyBar energyBar;
+    [SerializeField] float overdriveInterval = 0.1f;
+    bool available = true;
     public const int MAX = 100;
-    public const int PERCNET = 1;
+    public const int PERCENT = 1;
     int energy;
+    WaitForSeconds waitforOverdriveInterval;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        waitforOverdriveInterval = new WaitForSeconds(overdriveInterval);
+    }
+
+    void OnEnable()
+    {
+        PlayerOverdrive.on += PlayerOverdriveOn;
+        PlayerOverdrive.off += PlayerOverdriveOff;
+    }
+
+    void OnDisable()
+    {
+        PlayerOverdrive.on -= PlayerOverdriveOn;
+        PlayerOverdrive.off -= PlayerOverdriveOff;
+    }
 
     public void Start() 
     {
@@ -27,7 +49,31 @@ public class PlayerEnergy : Singleton<PlayerEnergy>
     {
         energy -= value;
         energyBar.UpdateStats(energy, MAX);
+
+        if (energy == 0 && !available) PlayerOverdrive.off.Invoke();
     }
 
     public bool IsEnough(int value) => energy >= value;
+
+    void PlayerOverdriveOn()
+    {
+        available = false;
+        StartCoroutine(nameof(KeepUsingCoroutine));
+    }
+
+    void PlayerOverdriveOff()
+    {
+        available = true;
+        StopCoroutine(nameof(KeepUsingCoroutine));
+    }
+
+    IEnumerator  KeepUsingCoroutine()
+    {
+        while (gameObject.activeSelf && energy > 0)
+        {
+            yield return waitforOverdriveInterval;
+
+            Use(PERCENT);
+        }
+    }
 }

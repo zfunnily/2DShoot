@@ -62,6 +62,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OverDrive"",
+                    ""type"": ""Button"",
+                    ""id"": ""f94842ea-c1ad-4044-ae42-a3774059eff1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,28 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8bc8b69-d5c1-4bff-9afb-94ea4438adf6"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""OverDrive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e962443d-05ff-4e16-b889-5687c0dd2283"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""OverDrive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -274,6 +305,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
         m_Gameplay_WeaponChange = m_Gameplay.FindAction("WeaponChange", throwIfNotFound: true);
         m_Gameplay_Dodge = m_Gameplay.FindAction("Dodge", throwIfNotFound: true);
+        m_Gameplay_OverDrive = m_Gameplay.FindAction("OverDrive", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +369,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Fire;
     private readonly InputAction m_Gameplay_WeaponChange;
     private readonly InputAction m_Gameplay_Dodge;
+    private readonly InputAction m_Gameplay_OverDrive;
     public struct GameplayActions
     {
         private @InputActions m_Wrapper;
@@ -345,6 +378,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Gameplay_Fire;
         public InputAction @WeaponChange => m_Wrapper.m_Gameplay_WeaponChange;
         public InputAction @Dodge => m_Wrapper.m_Gameplay_Dodge;
+        public InputAction @OverDrive => m_Wrapper.m_Gameplay_OverDrive;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -366,6 +400,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Dodge.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDodge;
+                @OverDrive.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOverDrive;
+                @OverDrive.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOverDrive;
+                @OverDrive.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnOverDrive;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -382,6 +419,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
+                @OverDrive.started += instance.OnOverDrive;
+                @OverDrive.performed += instance.OnOverDrive;
+                @OverDrive.canceled += instance.OnOverDrive;
             }
         }
     }
@@ -401,5 +441,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnWeaponChange(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
+        void OnOverDrive(InputAction.CallbackContext context);
     }
 }

@@ -13,6 +13,7 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions
     public event UnityAction onStopFire = delegate{};
     public event UnityAction onWeaponChange = delegate{};
     public event UnityAction onDodge= delegate{};
+    public event UnityAction onOverdrive = delegate{};
 
     InputActions inputActions;
     void OnEnable()
@@ -75,6 +76,14 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions
         if (context.performed)
         {
             onDodge.Invoke();
+        }
+    }
+
+    public void OnOverDrive(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            onOverdrive.Invoke();
         }
     }
 }
