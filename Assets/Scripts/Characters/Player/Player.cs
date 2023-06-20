@@ -19,8 +19,6 @@ public class Player : Character
     [SerializeField] float accelerationTime = 3f;
     [SerializeField] float decelerationTime = 3f;
     [SerializeField] float moveRotationAngle = 50f;
-    [SerializeField] float paddingX = .2f;
-    [SerializeField] float paddingY = .2f;
 
     [Header("---- FIRE ----")]
     [SerializeField] GameObject projectile1;
@@ -53,6 +51,8 @@ public class Player : Character
     float currentRoll = 0f;
 
     float t = 0f;
+    float paddingX = .2f;
+    float paddingY = .2f;
     Vector2 previousVelocity; 
     Quaternion previousRotation;
     WaitForSeconds waitForFireInterval;
@@ -69,6 +69,10 @@ public class Player : Character
     {
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
+
+        var size = transform.GetChild(0).GetComponent<Renderer>().bounds.size;
+        paddingX = size.x / 2f;
+        paddingY = size.y / 2f;
 
         dodgeDuration = maxRoll / rollSpeed;
 
