@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "Player Input")]
-public class PlayerInput : ScriptableObject, InputActions.IGameplayActions
+public class PlayerInput : ScriptableObject, InputActions.IGameplayActions, InputActions.IPauseMenuActions
 {
     public event UnityAction<Vector2> onMove = delegate{};
     public event UnityAction onStopMove = delegate{};
@@ -14,6 +14,8 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions
     public event UnityAction onWeaponChange = delegate{};
     public event UnityAction onDodge= delegate{};
     public event UnityAction onOverdrive = delegate{};
+    public event UnityAction onPause = delegate{};
+    public event UnityAction onUnPause = delegate{};
 
     InputActions inputActions;
     void OnEnable()
@@ -84,6 +86,21 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions
         if (context.performed)
         {
             onOverdrive.Invoke();
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            onPause.Invoke();
+        }
+    }
+    public void OnUnpause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            onUnPause.Invoke();
         }
     }
 }

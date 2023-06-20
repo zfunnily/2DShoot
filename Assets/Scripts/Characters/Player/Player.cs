@@ -95,6 +95,8 @@ public class Player : Character
         input.onWeaponChange += WeaponChange;
         input.onDodge += Dodge;
         input.onOverdrive += Overdrive;
+        input.onPause += Pause;
+        input.onUnPause += UnPause;
 
         PlayerOverdrive.on += OverdriveOn;
         PlayerOverdrive.off += OverdriveOff;
@@ -109,6 +111,7 @@ public class Player : Character
         input.onWeaponChange -= WeaponChange;
         input.onDodge -= Dodge;
         input.onOverdrive -= Overdrive;
+        input.onPause -= Pause;
 
         PlayerOverdrive.on -= OverdriveOn;
         PlayerOverdrive.off -= OverdriveOff;
@@ -382,4 +385,15 @@ public class Player : Character
         dodgeEnergyCost /= overdriveDodgeFactor;
         moveSpeed /= overdriveSpeedFactor;
     }
+
+
+    void Pause()
+    {
+    }
+
+    void UnPause()
+    {
+
+    }
+    
 }
