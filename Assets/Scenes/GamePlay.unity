@@ -338,6 +338,7 @@ MonoBehaviour:
   projectile1: {fileID: 4001035419433896650, guid: 33d577025c3e98341801bd03269f1003, type: 3}
   projectile2: {fileID: 4001035419433896650, guid: de9137fa8e99cea40b67ddef5914d53f, type: 3}
   projectile3: {fileID: 4001035419433896650, guid: a859b0367b98bee42957df59e771c46a, type: 3}
+  projectileOverdrive: {fileID: 4001035419433896650, guid: 13997075884c8c04d834ce9eb64f4ce2, type: 3}
   muzzleMiddle: {fileID: 1199261490}
   muzzleTop: {fileID: 427148214}
   muzzleBottom: {fileID: 635383532}
@@ -518,13 +519,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427148215}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 0.05, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.95, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6435389009028497077}
-  m_RootOrder: 5
+  m_Father: {fileID: 1031308764}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &427148215
 GameObject:
@@ -772,13 +773,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635383533}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.95, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6435389009028497077}
-  m_RootOrder: 6
+  m_Father: {fileID: 1031308764}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &635383533
 GameObject:
@@ -1252,6 +1253,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8da9d1c83c4e644ea7bc02bbbe1d9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1031308763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1031308764}
+  m_Layer: 6
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1031308764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031308763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1199261490}
+  - {fileID: 427148214}
+  - {fileID: 635383532}
+  m_Father: {fileID: 6435389009028497077}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035811180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +1615,8 @@ MonoBehaviour:
     size: 25
   - prefabe: {fileID: 4001035419433896650, guid: a859b0367b98bee42957df59e771c46a, type: 3}
     size: 25
+  - prefabe: {fileID: 4001035419433896650, guid: 13997075884c8c04d834ce9eb64f4ce2, type: 3}
+    size: 25
   enemyProjectilePools:
   - prefabe: {fileID: 3631816006705354620, guid: 0c72a4780ae7d464c924a80c836509cd, type: 3}
     size: 10
@@ -1600,6 +1637,8 @@ MonoBehaviour:
     size: 25
   - prefabe: {fileID: 5060298685065931927, guid: 6775c68a79b34db4fa2fd4db2a4cdf74, type: 3}
     size: 20
+  - prefabe: {fileID: 5060298685065931927, guid: 4a1b944c3ff7a9849a30527adc6dcec6, type: 3}
+    size: 20
 --- !u!4 &1199261490
 Transform:
   m_ObjectHideFlags: 0
@@ -1607,13 +1646,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199261491}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.95, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6435389009028497077}
-  m_RootOrder: 4
+  m_Father: {fileID: 1031308764}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1199261491
 GameObject:
@@ -99204,9 +99243,7 @@ Transform:
   - {fileID: 6435389010100705743}
   - {fileID: 2832587654823924091}
   - {fileID: 4400391027175978}
-  - {fileID: 1199261490}
-  - {fileID: 427148214}
-  - {fileID: 635383532}
+  - {fileID: 1031308764}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

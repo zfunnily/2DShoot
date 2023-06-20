@@ -26,6 +26,7 @@ public class Player : Character
     [SerializeField] GameObject projectile1;
     [SerializeField] GameObject projectile2;
     [SerializeField] GameObject projectile3;
+    [SerializeField] GameObject projectileOverdrive;
     [SerializeField] Transform muzzleMiddle;
     [SerializeField] Transform muzzleTop;
     [SerializeField] Transform muzzleBottom;
@@ -220,16 +221,16 @@ public class Player : Character
             switch (weaponPower)
             {
                 case 0:
-                    PoolManager.Release(projectile1, muzzleMiddle.position);
+                    PoolManager.Release(Projectile(1), muzzleMiddle.position);
                     break;
                 case 1:
-                    PoolManager.Release(projectile2, muzzleTop.position);
-                    PoolManager.Release(projectile3, muzzleBottom.position);
+                    PoolManager.Release(Projectile(2), muzzleTop.position);
+                    PoolManager.Release(Projectile(3), muzzleBottom.position);
                     break;
                 case 2:
-                    PoolManager.Release(projectile1, muzzleMiddle.position);
-                    PoolManager.Release(projectile2, muzzleTop.position);
-                    PoolManager.Release(projectile3, muzzleBottom.position);
+                    PoolManager.Release(Projectile(1), muzzleMiddle.position);
+                    PoolManager.Release(Projectile(2), muzzleTop.position);
+                    PoolManager.Release(Projectile(3), muzzleBottom.position);
                     break;
                 default:
                     break;
@@ -241,6 +242,20 @@ public class Player : Character
             yield return isOverdriving?waitForOverdriveFireInterval:waitForFireInterval;
 
         }
+    }
+
+    GameObject Projectile(int projectileType) 
+    { 
+        switch (projectileType) {
+        case 1:
+            return isOverdriving?projectileOverdrive:projectile1; 
+        case 2:
+            return isOverdriving?projectileOverdrive:projectile2; 
+        case 3:
+            return isOverdriving?projectileOverdrive:projectile3; 
+        }
+
+        return projectile1;
     }
     
     void Dodge()
