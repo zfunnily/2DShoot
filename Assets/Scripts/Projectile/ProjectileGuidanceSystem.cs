@@ -18,7 +18,7 @@ public class ProjectileGuidanceSystem : MonoBehaviour
             if (target.activeSelf)
             {
                 // momve to target
-                targetDirection = (target.transform.position -transform.position).normalized;
+                targetDirection = target.transform.position -transform.position;
 
                 var angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

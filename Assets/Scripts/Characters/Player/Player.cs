@@ -48,6 +48,7 @@ public class Player : Character
     bool isOverdriving = false;
     
     bool isDodging = false;
+    readonly float slowMotionDuration = 1f;
     float dodgeDuration;
     float currentRoll = 0f;
 
@@ -131,6 +132,7 @@ public class Player : Character
     {
         base.TakeDamage(damage);
         statsBar_HUB.UpdateStats(health, maxHealth);
+        TimeController.Instance.BulleTime(slowMotionDuration);
 
         if (gameObject.activeSelf)
         {
@@ -333,6 +335,9 @@ public class Player : Character
             // yield return null;
         // }
 
+
+        TimeController.Instance.BulleTime(slowMotionDuration, slowMotionDuration);
+
         // 方法四
         while (currentRoll < maxRoll)
         {
@@ -363,6 +368,9 @@ public class Player : Character
         isOverdriving = true;
         dodgeEnergyCost *= overdriveDodgeFactor;
         moveSpeed *= overdriveSpeedFactor;
+
+        TimeController.Instance.BulleTime(slowMotionDuration, 1f, slowMotionDuration);
+
     }
     void OverdriveOff()
     {

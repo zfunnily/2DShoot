@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayeProjectileOverdrive : Projectile
+public class PlayeProjectileOverdrive : PlayerProjectile
 {
     [SerializeField] ProjectileGuidanceSystem guidanceSystem;
     protected override void OnEnable()
