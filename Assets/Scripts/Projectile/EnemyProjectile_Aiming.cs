@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EnemyProjectile_Aiming : Projectile
 {
+    [SerializeField] ProjectileGuidanceSystem guidanceSystem;
     void Awake() 
     {
-        target = GameObject.FindGameObjectWithTag("Player");
+        SetTarget(GameObject.FindGameObjectWithTag("Player"));
     }
 
     protected override void OnEnable() 
     {
         StartCoroutine(nameof(MoveDirectionCoroutine));
         base.OnEnable();
+        // if (target == null) base.OnEnable();
+        // else StartCoroutine(guidanceSystem.HomingCoroutine(target));
     }
 
     IEnumerator MoveDirectionCoroutine()

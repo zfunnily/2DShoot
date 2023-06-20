@@ -57,6 +57,7 @@ public class Player : Character
     WaitForSeconds waitForFireInterval;
     WaitForSeconds waitForOverdriveFireInterval;
     WaitForSeconds waithealthRegenerateTime;
+    WaitForSeconds waitDecelerationTime;
     WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate(); 
     Coroutine moveCoroutine;
     Coroutine healthRegenerateCoroutine;
@@ -75,6 +76,7 @@ public class Player : Character
         waitForFireInterval = new WaitForSeconds(fireInterval);
         waitForOverdriveFireInterval = new WaitForSeconds(fireInterval / overdriveFireFactor);
         waithealthRegenerateTime = new WaitForSeconds(healthRegenerateTime);
+        waitDecelerationTime = new WaitForSeconds(decelerationTime);
     }
 
     protected override void OnEnable()
@@ -157,7 +159,8 @@ public class Player : Character
 
         moveCoroutine = StartCoroutine(MoveCoroutine(accelerationTime, moveInput.normalized * moveSpeed, moveRotation));
 
-        StartCoroutine(nameof(MovePositionLimitCoroutine));
+        StopCoroutine(nameof(DecelerationCoroutine));
+        StartCoroutine(nameof(MoveRangeLimitationCoroutine));
     }
 
     // Update is called once per frame
@@ -167,7 +170,7 @@ public class Player : Character
 
         moveCoroutine = StartCoroutine(MoveCoroutine(decelerationTime, Vector2.zero, Quaternion.identity));
 
-        StopCoroutine(nameof(MovePositionLimitCoroutine));
+        StartCoroutine(nameof(DecelerationCoroutine));
     }
 
     IEnumerator MoveCoroutine(float time, Vector2 moveVelocity, Quaternion moveRotation)
@@ -189,7 +192,7 @@ public class Player : Character
 
 
     // 限制player在view point内
-    IEnumerator MovePositionLimitCoroutine()
+    IEnumerator MoveRangeLimitationCoroutine()
     {
         while(true)
         {
@@ -198,6 +201,14 @@ public class Player : Character
             yield return null;
         }
     }
+
+    IEnumerator DecelerationCoroutine()
+    {
+        yield return waitDecelerationTime;
+
+        StopCoroutine(nameof(MoveRangeLimitationCoroutine));
+    }
+
 
     void Fire()
     {

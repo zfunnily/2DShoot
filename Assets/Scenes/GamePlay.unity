@@ -1616,7 +1616,7 @@ MonoBehaviour:
   - prefabe: {fileID: 4001035419433896650, guid: a859b0367b98bee42957df59e771c46a, type: 3}
     size: 25
   - prefabe: {fileID: 4001035419433896650, guid: 13997075884c8c04d834ce9eb64f4ce2, type: 3}
-    size: 25
+    size: 60
   enemyProjectilePools:
   - prefabe: {fileID: 3631816006705354620, guid: 0c72a4780ae7d464c924a80c836509cd, type: 3}
     size: 10
@@ -1638,7 +1638,7 @@ MonoBehaviour:
   - prefabe: {fileID: 5060298685065931927, guid: 6775c68a79b34db4fa2fd4db2a4cdf74, type: 3}
     size: 20
   - prefabe: {fileID: 5060298685065931927, guid: 4a1b944c3ff7a9849a30527adc6dcec6, type: 3}
-    size: 20
+    size: 60
 --- !u!4 &1199261490
 Transform:
   m_ObjectHideFlags: 0

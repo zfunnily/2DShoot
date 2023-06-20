@@ -4963,7 +4963,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4001035419433896651}
   - component: {fileID: 8766369848550321140}
-  - component: {fileID: 4001035419433896644}
+  - component: {fileID: 7691334832738009480}
+  - component: {fileID: -765889029283363116}
   - component: {fileID: -5173186536953180762}
   m_Layer: 8
   m_Name: Player Projectile OverDrive
@@ -5004,7 +5005,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 1
---- !u!114 &4001035419433896644
+--- !u!114 &7691334832738009480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5013,7 +5014,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4001035419433896650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53c95015fc352344e8bd98ff34166b7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1eb6f94054c160342a6792f13d99f9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitVFX: {fileID: 5060298685065931927, guid: 4a1b944c3ff7a9849a30527adc6dcec6, type: 3}
@@ -5024,9 +5025,25 @@ MonoBehaviour:
     volume: 0.3
   - audioClip: {fileID: 8300000, guid: bb6cdd13aeb95f743847b1cd460889bc, type: 3}
     volume: 0.3
-  damage: 1
-  moveSpeed: 15
+  damage: 2
+  moveSpeed: 20
   moveDirection: {x: 1, y: 0}
+  guidanceSystem: {fileID: -765889029283363116}
+--- !u!114 &-765889029283363116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4001035419433896650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c30887952128c438dcfab8f8f8e491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 7691334832738009480}
+  minBallisticAngle: 50
+  maxBallisticAngle: 75
 --- !u!114 &-5173186536953180762
 MonoBehaviour:
   m_ObjectHideFlags: 0

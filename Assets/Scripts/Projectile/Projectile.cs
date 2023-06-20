@@ -16,16 +16,6 @@ public class Projectile : MonoBehaviour
         StartCoroutine(MoveDirectly());
     }
 
-    IEnumerator MoveDirectly()
-    {
-        while (gameObject.activeSelf)
-        {
-            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-
-            yield return null;
-        }
-    }
-
     protected virtual void OnCollisionEnter2D(Collision2D collision) 
     {
         if (collision.gameObject.TryGetComponent<Character>(out Character character)) 
@@ -42,4 +32,17 @@ public class Projectile : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    IEnumerator MoveDirectly()
+    {
+        while (gameObject.activeSelf)
+        {
+            Move();
+            
+            yield return null;
+        }
+    }
+
+    protected void SetTarget(GameObject target) => this.target = target;
+    public void Move() => transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 }
