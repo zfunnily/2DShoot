@@ -378,6 +378,12 @@ MonoBehaviour:
   playerInput: {fileID: 11400000, guid: 734052693cffa8c44a3de8b2b74f2dad, type: 2}
   hUDCanvas: {fileID: 1035811183}
   menusCanvas: {fileID: 348988304}
+  pauseSFX:
+    audioClip: {fileID: 8300000, guid: a15c02ca5c68f1b49acceb37b5fcf5dd, type: 3}
+    volume: 1
+  unpauseSFX:
+    audioClip: {fileID: 8300000, guid: f3d6c538a4a011f42a7a2bb965928f8e, type: 3}
+    volume: 1
   resumeButton: {fileID: 678193711}
   optionsButton: {fileID: 1915755336}
   mainMenueButton: {fileID: 1808265541}
@@ -2287,6 +2293,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1834133643}
     m_Modifications:
+    - target: {fileID: -7133877138467143322, guid: a9d8510a9080fbc45be7ccc6318cf9e8, type: 3}
+      propertyPath: submitSFX.audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ed01e6577d92d44eaa707cc45807023, type: 3}
     - target: {fileID: 3348249993447743655, guid: a9d8510a9080fbc45be7ccc6318cf9e8, type: 3}
       propertyPath: m_Text
       value: Options
@@ -70637,6 +70647,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1834133643}
     m_Modifications:
+    - target: {fileID: -7133877138467143322, guid: a9d8510a9080fbc45be7ccc6318cf9e8, type: 3}
+      propertyPath: submitSFX.audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f3d6c538a4a011f42a7a2bb965928f8e, type: 3}
     - target: {fileID: 3348249994296532869, guid: a9d8510a9080fbc45be7ccc6318cf9e8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0

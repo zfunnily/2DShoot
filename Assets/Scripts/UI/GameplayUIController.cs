@@ -5,14 +5,23 @@ using UnityEngine.UI;
 
 public class GameplayUIController : MonoBehaviour
 {
+    [Header("==== PLAYER INPUT ====")]
     [SerializeField] PlayerInput playerInput;
+
+    [Header("==== CANVAS ====")]
     [SerializeField] Canvas hUDCanvas;
     [SerializeField] Canvas menusCanvas;
 
-    [Header("==== PLAYER INPUT ====")]
+    [Header("==== AUDIO DATAT ====")]
+    [SerializeField] AudioData pauseSFX;
+    [SerializeField] AudioData unpauseSFX;
+
+    [Header("==== BUTTONS ====")]
     [SerializeField] Button resumeButton;
     [SerializeField] Button optionsButton;
     [SerializeField] Button mainMenueButton;
+
+    int buttonPressedParameterID = Animator.StringToHash("Pressed");
 
     void OnEnable()
     {
@@ -40,12 +49,16 @@ public class GameplayUIController : MonoBehaviour
         playerInput.SwitchToDynamicUpdateMode();
 
         UIInput.Instance.SelectUI(resumeButton);
+
+        AudioManager.Instance.PlayerSFX(pauseSFX);
     }
 
     void Unpause()
     {
         resumeButton.Select();
-        resumeButton.animator.SetTrigger("Pressed");
+        resumeButton.animator.SetTrigger(buttonPressedParameterID);
+
+        AudioManager.Instance.PlayerSFX(unpauseSFX);
     }
 
     void OnResumeButtonClick()
