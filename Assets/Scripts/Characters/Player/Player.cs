@@ -148,6 +148,7 @@ public class Player : Character
 
     public override void Die()
     {
+        GameManager.GameState = GameState.GameOver;
         statsBar_HUB.UpdateStats(0f, maxHealth);
 
         base.Die();
@@ -380,14 +381,4 @@ public class Player : Character
         moveSpeed /= overdriveSpeedFactor;
     }
 
-
-    void Pause()
-    {
-    }
-
-    void UnPause()
-    {
-
-    }
-    
 }

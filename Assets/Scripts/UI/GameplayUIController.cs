@@ -42,7 +42,9 @@ public class GameplayUIController : MonoBehaviour
 
     void Pause()
     {
-        Time.timeScale = 0f;
+        TimeController.Instance.Pause();
+        GameManager.GameState = GameState.Paused;
+
         hUDCanvas.enabled = false;
         menusCanvas.enabled = true;
         playerInput.EnablePauseMenuInput();
@@ -63,7 +65,9 @@ public class GameplayUIController : MonoBehaviour
 
     void OnResumeButtonClick()
     {
-        Time.timeScale = 1f;
+        TimeController.Instance.Unpause();
+        GameManager.GameState = GameState.Playing;
+
         hUDCanvas.enabled = true;
         menusCanvas.enabled = false;
         playerInput.EnableGameplayInput();

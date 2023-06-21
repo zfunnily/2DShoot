@@ -14,7 +14,7 @@ public class BackGroundScroller : MonoBehaviour
     // Update is called once per frame
     IEnumerator Start()
     {
-        while(true)
+        while(!GameManager.GameOver())
         {
             material.mainTextureOffset += scrollVelocity * Time.deltaTime;
 
