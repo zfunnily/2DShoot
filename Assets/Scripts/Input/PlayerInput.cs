@@ -15,31 +15,45 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions, Inpu
     public event UnityAction onDodge= delegate{};
     public event UnityAction onOverdrive = delegate{};
     public event UnityAction onPause = delegate{};
-    public event UnityAction onUnPause = delegate{};
+    public event UnityAction onUnpause = delegate{};
 
     InputActions inputActions;
+
     void OnEnable()
     {
         inputActions = new InputActions();
         inputActions.Gameplay.SetCallbacks(this);
+        inputActions.PauseMenu.SetCallbacks(this);
     }
 
     private void OnDisable()
     {
         DisableAllInputs();
     }
-    public void DisableAllInputs()
+
+    void SwitchActionMap(InputActionMap actionMap, bool isUIInput)
     {
-        inputActions.Gameplay.Disable();
+        inputActions.Disable();
+        actionMap.Enable();
+
+        if (isUIInput)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else 
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
-    public void EnableGameplayInput()
-    {
-        inputActions.Gameplay.Enable();
+    public void SwitchToDynamicUpdateMode() => InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
+    public void SwitchToFixedUpdateMode() => InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInFixedUpdate;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+    public void DisableAllInputs() => inputActions.Disable();
+    public void EnableGameplayInput() => SwitchActionMap(inputActions.Gameplay, false);
+    public void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu, true);
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -100,7 +114,7 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions, Inpu
     {
         if (context.performed)
         {
-            onUnPause.Invoke();
+            onUnpause.Invoke();
         }
     }
 }

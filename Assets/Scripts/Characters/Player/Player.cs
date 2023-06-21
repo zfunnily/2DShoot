@@ -46,7 +46,7 @@ public class Player : Character
     bool isOverdriving = false;
     
     bool isDodging = false;
-    readonly float slowMotionDuration = 1f;
+    readonly float slowMotionDuration = 0.2f;
     float dodgeDuration;
     float currentRoll = 0f;
 
@@ -95,8 +95,6 @@ public class Player : Character
         input.onWeaponChange += WeaponChange;
         input.onDodge += Dodge;
         input.onOverdrive += Overdrive;
-        input.onPause += Pause;
-        input.onUnPause += UnPause;
 
         PlayerOverdrive.on += OverdriveOn;
         PlayerOverdrive.off += OverdriveOff;
@@ -111,7 +109,6 @@ public class Player : Character
         input.onWeaponChange -= WeaponChange;
         input.onDodge -= Dodge;
         input.onOverdrive -= Overdrive;
-        input.onPause -= Pause;
 
         PlayerOverdrive.on -= OverdriveOn;
         PlayerOverdrive.off -= OverdriveOff;
@@ -120,10 +117,7 @@ public class Player : Character
     // Start is called before the first frame update
     void Start () 
     {
-        
-
         statsBar_HUB.Initialize(health, maxHealth);
-
         input.EnableGameplayInput();
     }
 
@@ -376,7 +370,7 @@ public class Player : Character
         dodgeEnergyCost *= overdriveDodgeFactor;
         moveSpeed *= overdriveSpeedFactor;
 
-        TimeController.Instance.BulleTime(slowMotionDuration, 1f, slowMotionDuration);
+        TimeController.Instance.BulleTime(slowMotionDuration, 0.3f, slowMotionDuration);
 
     }
     void OverdriveOff()

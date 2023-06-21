@@ -16,7 +16,7 @@ public class TimeController : Singleton<TimeController>
     {
         Time.timeScale = bulletTimeScale;
 
-        SlowIn(duration);
+        SlowOut(duration);
     }
 
     public void BulleTime(float inDuration, float outDuration)

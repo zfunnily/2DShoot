@@ -10,8 +10,9 @@ public class SceneLoader : PersistenSingleton<SceneLoader>
     [SerializeField] float fadeTime = 3.5f;
     Color color;
     const string GAMEPLAY = "Gameplay";
+    const string MAIN_MENE = "MainMenu";
 
-    IEnumerator LoadCoroutine(string sceneName)
+    IEnumerator LoadingCoroutine(string sceneName)
     {
         // Load new scene in background and
         // Set this scene inactive
@@ -28,6 +29,9 @@ public class SceneLoader : PersistenSingleton<SceneLoader>
 
             yield return null;
         }
+
+        // 优化 why TODO
+        yield return new WaitUntil(()=> loadingOperation.progress >= 0.9f);
 
         // Activate the new scene
         loadingOperation.allowSceneActivation = true;
@@ -46,6 +50,13 @@ public class SceneLoader : PersistenSingleton<SceneLoader>
 
     public void LoadGamePlayScene()
     {
-        StartCoroutine(LoadCoroutine(GAMEPLAY));
+        StopAllCoroutines();
+        StartCoroutine(LoadingCoroutine(GAMEPLAY));
+    }
+
+    public void LoadMainMenueScene()
+    {
+        StopAllCoroutines();
+        StartCoroutine(LoadingCoroutine(MAIN_MENE));
     }
 }
