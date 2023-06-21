@@ -58,9 +58,9 @@ public class EnemyManager : Singleton<EnemyManager>
         for (int i = 0; i < enemyAmount; i++)
         {
             enemyList.Add(PoolManager.Release(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]));
-
-            yield return waitTimeBetweenSpawns;
         }
+
+        yield return waitTimeBetweenSpawns;
 
         waveNumber++;
     }
