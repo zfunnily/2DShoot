@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
-public class UIInputUI : Singleton<UIInputUI>
+public class UIInput : Singleton<UIInput>
 {
     [SerializeField] PlayerInput playerInput;
     InputSystemUIInputModule UIInputModule;

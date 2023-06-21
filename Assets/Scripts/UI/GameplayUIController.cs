@@ -39,7 +39,7 @@ public class GameplayUIController : MonoBehaviour
         playerInput.EnablePauseMenuInput();
         playerInput.SwitchToDynamicUpdateMode();
 
-        UIInputUI.Instance.SelectUI(resumeButton);
+        UIInput.Instance.SelectUI(resumeButton);
     }
 
     void Unpause()
@@ -62,7 +62,7 @@ public class GameplayUIController : MonoBehaviour
         // TODO
 
         // 防止按下按钮时，游戏卡住
-        UIInputUI.Instance.SelectUI(optionsButton);
+        UIInput.Instance.SelectUI(optionsButton);
         playerInput.EnablePauseMenuInput();
     }
 
