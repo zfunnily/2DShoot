@@ -19,19 +19,16 @@ public class GameplayUIController : MonoBehaviour
         playerInput.onPause += Pause;
         playerInput.onUnpause += Unpause;
 
-        resumeButton.onClick.AddListener(OnResumeButtonClick);
-        optionsButton.onClick.AddListener(OnOptionsButtonClick);
-        mainMenueButton.onClick.AddListener(OnMainMenueButtonClick);
+        // 防止重复点击的问题
+        ButtonPressedBehaviour.buttonFunctionTable.Add(resumeButton.gameObject.name, OnResumeButtonClick);
+        ButtonPressedBehaviour.buttonFunctionTable.Add(optionsButton.gameObject.name, OnOptionsButtonClick);
+        ButtonPressedBehaviour.buttonFunctionTable.Add(mainMenueButton.gameObject.name, OnMainMenueButtonClick);
     }
 
     void OnDisable()
     {
         playerInput.onPause -= Pause;
         playerInput.onUnpause -= Unpause;
-
-        resumeButton.onClick.RemoveAllListeners();
-        optionsButton.onClick.RemoveAllListeners();
-        mainMenueButton.onClick.RemoveAllListeners();
     }
 
     void Pause()
@@ -41,11 +38,14 @@ public class GameplayUIController : MonoBehaviour
         menusCanvas.enabled = true;
         playerInput.EnablePauseMenuInput();
         playerInput.SwitchToDynamicUpdateMode();
+
+        UIInputUI.Instance.SelectUI(resumeButton);
     }
 
     void Unpause()
     {
-        OnResumeButtonClick();
+        resumeButton.Select();
+        resumeButton.animator.SetTrigger("Pressed");
     }
 
     void OnResumeButtonClick()
@@ -60,6 +60,10 @@ public class GameplayUIController : MonoBehaviour
     void OnOptionsButtonClick()
     {
         // TODO
+
+        // 防止按下按钮时，游戏卡住
+        UIInputUI.Instance.SelectUI(optionsButton);
+        playerInput.EnablePauseMenuInput();
     }
 
     void OnMainMenueButtonClick()
