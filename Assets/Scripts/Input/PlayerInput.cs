@@ -16,6 +16,7 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions, Inpu
     public event UnityAction onOverdrive = delegate{};
     public event UnityAction onPause = delegate{};
     public event UnityAction onUnpause = delegate{};
+    public event UnityAction onLaunchMissile = delegate{};
 
     InputActions inputActions;
 
@@ -115,6 +116,14 @@ public class PlayerInput : ScriptableObject, InputActions.IGameplayActions, Inpu
         if (context.performed)
         {
             onUnpause.Invoke();
+        }
+    }
+
+    public void OnLaunchMissile(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            onLaunchMissile.Invoke();
         }
     }
 }

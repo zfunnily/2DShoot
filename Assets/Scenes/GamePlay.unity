@@ -1812,6 +1812,8 @@ MonoBehaviour:
   - prefabe: {fileID: 4001035419433896650, guid: a859b0367b98bee42957df59e771c46a, type: 3}
     size: 25
   - prefabe: {fileID: 4001035419433896650, guid: 13997075884c8c04d834ce9eb64f4ce2, type: 3}
+    size: 90
+  - prefabe: {fileID: 2523096243714385163, guid: 1b2c3ab1e0e61914ba3e10d026ca3023, type: 3}
     size: 30
   enemyProjectilePools:
   - prefabe: {fileID: 3631816006705354620, guid: 0c72a4780ae7d464c924a80c836509cd, type: 3}
@@ -1834,6 +1836,8 @@ MonoBehaviour:
   - prefabe: {fileID: 5060298685065931927, guid: 6775c68a79b34db4fa2fd4db2a4cdf74, type: 3}
     size: 20
   - prefabe: {fileID: 5060298685065931927, guid: 4a1b944c3ff7a9849a30527adc6dcec6, type: 3}
+    size: 20
+  - prefabe: {fileID: 7203458116342931450, guid: 975f9549f84dd594a84456abeb05e287, type: 3}
     size: 20
 --- !u!4 &1199261490
 Transform:
@@ -100966,6 +100970,7 @@ GameObject:
   - component: {fileID: 277354273}
   - component: {fileID: 277354274}
   - component: {fileID: 6435389009028497078}
+  - component: {fileID: 6435389009028497079}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -101014,6 +101019,22 @@ MonoBehaviour:
   offSFX:
     audioClip: {fileID: 8300000, guid: af7991e526977a144b102a04e5366c12, type: 3}
     volume: 0
+--- !u!114 &6435389009028497079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435389009028497074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c18a96a8dec44f5e83df960bad1f019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missilePrefab: {fileID: 2523096243714385163, guid: 1b2c3ab1e0e61914ba3e10d026ca3023, type: 3}
+  launchSFX:
+    audioClip: {fileID: 8300000, guid: 99331d0df4c708149b69b11b5a64d2f4, type: 3}
+    volume: 1
 --- !u!1 &6435389010100705740
 GameObject:
   m_ObjectHideFlags: 0
