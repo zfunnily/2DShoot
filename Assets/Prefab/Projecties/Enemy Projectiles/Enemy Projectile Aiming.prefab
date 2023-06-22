@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyGameObject: 0
-  lifetime: 3
+  lifetime: 6
 --- !u!114 &957904649128401304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,3 +182,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 957904649128401304}
+  minBallisticAngle: 50
+  maxBallisticAngle: 75
