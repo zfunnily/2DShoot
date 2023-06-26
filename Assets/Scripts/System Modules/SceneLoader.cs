@@ -2,15 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 
 public class SceneLoader : PersistenSingleton<SceneLoader>
 {
     [SerializeField] UnityEngine.UI.Image transitionImage;
     [SerializeField] float fadeTime = 3.5f;
     Color color;
-    const string GAMEPLAY = "Gameplay";
-    const string MAIN_MENE = "MainMenu";
+
+    static SceneInstance loadSceneInstance;
+    public const string GAMEPLAY = "GamePlay";
+    public const string MAIN_MENE = "MainMenu";
+
+    public static event System.Action LoadingStarted;
+    public static event System.Action<float> IsLoading;
+    public static event System.Action LoadingSuccessed;
+    public static event System.Action LoadingCompleted;
+
+    public static bool ShowLoadingScreen {get; private set;}
+    public static bool IsSceneLoaded {get; private set;}
 
     IEnumerator LoadingCoroutine(string sceneName)
     {
@@ -59,4 +71,47 @@ public class SceneLoader : PersistenSingleton<SceneLoader>
         StopAllCoroutines();
         StartCoroutine(LoadingCoroutine(MAIN_MENE));
     }
+
+    static IEnumerator LoadAddressableSceneCoroutine(object sceneKey, bool showLoadingScreen, bool laodSceneAdditively, bool activateOnLoad)
+    {
+        LoadSceneMode loadSceneMode = laodSceneAdditively ? LoadSceneMode.Additive : LoadSceneMode.Single;
+        var asyncOperationHandle = Addressables.LoadSceneAsync(sceneKey, loadSceneMode, activateOnLoad);
+
+        LoadingStarted?.Invoke();
+        ShowLoadingScreen = showLoadingScreen;
+
+        while (asyncOperationHandle.Status != AsyncOperationStatus.Succeeded)
+        {
+            IsLoading?.Invoke(asyncOperationHandle.PercentComplete);
+
+            yield return null;
+        }
+
+        if (activateOnLoad)
+        {
+            LoadingCompleted?.Invoke();
+
+            yield break;
+        }
+
+        LoadingSuccessed?.Invoke();
+        IsSceneLoaded = true;
+        loadSceneInstance = asyncOperationHandle.Result;
+    }
+
+    public static void ActivateLoadScene()
+    {
+        loadSceneInstance.ActivateAsync().completed += _ => 
+        {
+            IsSceneLoaded = false;
+            loadSceneInstance = default;
+            LoadingCompleted?.Invoke();
+        };
+    }
+
+    public static void LoadAddressableScene(object sceneKey, bool showLoadingScreen = false, bool loadSceneAdditively = false, bool activateOnLoad = false)
+    {
+        Instance.StartCoroutine(LoadAddressableSceneCoroutine(sceneKey, showLoadingScreen, loadSceneAdditively, activateOnLoad));
+    }
+
 }

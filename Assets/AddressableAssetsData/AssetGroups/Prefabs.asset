@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefabs
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefabs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b3952d713573312499bbe212af5f83fc
+  m_SerializeEntries:
+  - m_GUID: d527ab7a908334f419c8713212c74a76
+    m_Address: Enemy 01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d22dfca8809f18446bb460d5d19d0ab4
+    m_Address: Enemy 02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b53d9489596a04d49afb72d5dedcb4af
+    m_Address: Enemy 03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 87272ef21921fde46bb90f4ef39b1912
+    m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4733dae2765f25d40bb9464c0800015f
+    m_Address: Enemy Projectile 8 O'clock
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cb87d88dd1f7aa743821c43500f29326
+    m_Address: Enemy Projectile 9 O'clock
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ec367dc0b27f0c4d99f02f54c5057db
+    m_Address: Enemy Projectile 10 O'clock
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3fca6e007d9126745bb37ca0b43747d1
+    m_Address: Enemy Projectile Aiming
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0366cab7674ef2a43a5e75edcb3fc74a
+    m_Address: Enemy Projectile Basic
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8dade2c14b7339f48b55e3d210423183
+    m_Address: Player Missile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0409a7d0d3015484eadd63809c3396f2
+    m_Address: Player Projectile 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3bf87ee51bf3ea042ac1110df9f2886f
+    m_Address: Player Projectile 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 12c772f953ebd5a42a5fcb9b85e56559
+    m_Address: Player Projectile 3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6c38f1e1f4e18564f83b007d9b929e6a
+    m_Address: Player Projectile OverDrive
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7a76d111cb1367f4f9a1e4f243349536
+    m_Address: ====Persistent Managers====
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ab4d6da342c37604a8dd632496204d3f
+    m_Address: Audio Manager
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 31b762ebe0d473c489af9f8d10167186
+    m_Address: Game Manager
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a980283e5fee07c4e82532bdc21ed103
+    m_Address: Scene Loader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f409882f4f9e26349a28a0cedb860945
+    m_Address: Score Manager
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a84bb3455ea4d554495e1c94d34e8b90
+    m_Address: VFX_EnemyDeath
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 712158fb686df2549aa36b8b0aaf1ae5
+    m_Address: VFX_EnemyProjectileHit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 552b656310c1f7343aca3d8cde2197c0
+    m_Address: VFX_MissileExplosion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 65f59b6a6e9d79b48a38e755d8859b93
+    m_Address: VFX_OverdriveTrigger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b56194e69e1a2714983113bca6745c1c
+    m_Address: VFX_PlayerDeath
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6ed624a9318751e439c69a69a36242bc
+    m_Address: VFX_PlayerEngineOverdrive
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5d5809167a7017d4881183a85e44f586
+    m_Address: VFX_PlayerProjectileHitNormal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d4b42cdcba541f94c88db70f3e2c273d
+    m_Address: VFX_PlayerProjectileHitOverdrive
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1c1ed3cbf79b2e74fa659b2bb24b6195
+    m_Address: UI Game Over Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0516efc9590f8e840a18135b936ddb3b
+    m_Address: UI Health Bar On Head Enemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3849e6299b763f34ea767a5d98c02eca
+    m_Address: UI Health Bar On Head Player
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 712a8ff1eb4c58340a4ce0fc921a3aa7
+    m_Address: Button
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8f00084fd24855743a0b081f4dfd38fb
+    m_Address: HUD Player Energy Bar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89a811c9b25873d4399563349c7fb2a1
+    m_Address: HUD Player Health Bar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 017c30f892ddb4b4aae77bf77a9c55c8, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3440efc5fae823c4fb5cc7d3f8404cc7, type: 2}
+    - {fileID: 11400000, guid: 2eb9695ca0e650748833d28f8d11954b, type: 2}

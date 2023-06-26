@@ -54,3 +54,4 @@
 - Universal RP
 - Visual Studio Code Editor
 - Input System
+- Addressable  
