@@ -71,7 +71,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.669
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.825
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -238,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5996654518972623613}
   - component: {fileID: 5996654518972623612}
-  - component: {fileID: 5996654518972623555}
+  - component: {fileID: 8963790456547181780}
   - component: {fileID: 5996654518972623614}
   m_Layer: 5
   m_Name: UI Health Bar On Head Enemy
@@ -291,7 +291,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &5996654518972623555
+--- !u!114 &8963790456547181780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -5017,7 +5017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb6f94054c160342a6792f13d99f9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitVFX: {fileID: 5060298685065931927, guid: 4a1b944c3ff7a9849a30527adc6dcec6, type: 3}
+  hitVFX: {fileID: 5060298685065931927, guid: d4b42cdcba541f94c88db70f3e2c273d, type: 3}
   hitSFX:
   - audioClip: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
     volume: 0.3

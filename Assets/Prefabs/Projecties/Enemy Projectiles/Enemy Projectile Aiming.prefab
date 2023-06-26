@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326fb1e3c797c694d97b10c4a207d8a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitVFX: {fileID: 4801493125213720806, guid: 94d3dff6247d98e4cb4d8d6f0be5e291, type: 3}
+  hitVFX: {fileID: 4801493125213720806, guid: 712158fb686df2549aa36b8b0aaf1ae5, type: 3}
   hitSFX:
   - audioClip: {fileID: 8300000, guid: 958408b32ccf3714ea02821877b0870c, type: 3}
     volume: 1

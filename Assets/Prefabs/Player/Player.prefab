@@ -29256,14 +29256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d0b9ff487a4804caf8244f76f00e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathVFX: {fileID: 1587261729604890, guid: 600ec83cba1cec448bf41a6607229741, type: 3}
+  deathVFX: {fileID: 1587261729604890, guid: b56194e69e1a2714983113bca6745c1c, type: 3}
   deathSFX:
   - audioClip: {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
     volume: 1
   maxHealth: 100
   showOnHeadHealthBar: 0
-  onHeadHealthBar: {fileID: 0}
-  statsBar_HUB: {fileID: 0}
+  onHeadHealthBar: {fileID: 7817130202103022570, guid: 3849e6299b763f34ea767a5d98c02eca, type: 3}
+  statsBar_HUB: {fileID: 5857244634328794353, guid: 89a811c9b25873d4399563349c7fb2a1, type: 3}
   regenerateHealth: 1
   healthRegenerateTime: 2
   healthRegeneratePercent: 0.02
@@ -29272,11 +29272,10 @@ MonoBehaviour:
   accelerationTime: 2
   decelerationTime: 3
   moveRotationAngle: 28
-  paddingX: 1
-  paddingY: 0.3
-  projectile1: {fileID: 4001035419433896650, guid: 33d577025c3e98341801bd03269f1003, type: 3}
-  projectile2: {fileID: 4001035419433896650, guid: de9137fa8e99cea40b67ddef5914d53f, type: 3}
-  projectile3: {fileID: 4001035419433896650, guid: a859b0367b98bee42957df59e771c46a, type: 3}
+  projectile1: {fileID: 4001035419433896650, guid: 0409a7d0d3015484eadd63809c3396f2, type: 3}
+  projectile2: {fileID: 4001035419433896650, guid: 3bf87ee51bf3ea042ac1110df9f2886f, type: 3}
+  projectile3: {fileID: 4001035419433896650, guid: 12c772f953ebd5a42a5fcb9b85e56559, type: 3}
+  projectileOverdrive: {fileID: 4001035419433896650, guid: 6c38f1e1f4e18564f83b007d9b929e6a, type: 3}
   muzzleMiddle: {fileID: 77734743}
   muzzleTop: {fileID: 1521264595}
   muzzleBottom: {fileID: 1711688329}
@@ -29307,7 +29306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586914a62e9a8514b8490e264a55122f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyBar: {fileID: 0}
+  energyBar: {fileID: 2267679720241204373, guid: 8f00084fd24855743a0b081f4dfd38fb, type: 3}
   overdriveInterval: 0.1
 --- !u!114 &1138320487
 MonoBehaviour:
@@ -29321,15 +29320,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5d4c53bf070b6469d187bb08ff4eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerVFX: {fileID: 0}
-  engineVFXNormal: {fileID: 0}
-  engineVFXOverdrive: {fileID: 0}
+  triggerVFX: {fileID: 1628744458893394, guid: 65f59b6a6e9d79b48a38e755d8859b93, type: 3}
+  engineVFXNormal: {fileID: 5060298685065931927, guid: 5d5809167a7017d4881183a85e44f586, type: 3}
+  engineVFXOverdrive: {fileID: 5060298685065931927, guid: d4b42cdcba541f94c88db70f3e2c273d, type: 3}
   onSFX:
-    audioClip: {fileID: 0}
-    volume: 0
+    audioClip: {fileID: 8300000, guid: 62c5fc7ce12def64a84582fcf54974a1, type: 3}
+    volume: 1
   offSFX:
-    audioClip: {fileID: 0}
-    volume: 0
+    audioClip: {fileID: 8300000, guid: af7991e526977a144b102a04e5366c12, type: 3}
+    volume: 1
 --- !u!1 &6758096032694626173
 GameObject:
   m_ObjectHideFlags: 0
