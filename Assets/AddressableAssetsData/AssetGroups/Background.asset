@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Background
+  m_EditorClassIdentifier: 
+  m_GroupName: Background
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e43cd1c77fb1aa2468e27c496e2d4b8c
+  m_SerializeEntries:
+  - m_GUID: fc4c8a70d02639a459063df8e044c9bb
+    m_Address: SpaceBackground00
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4f32275092de3a84091855dda8a7ea43
+    m_Address: SpaceBackground0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: 0fe67e1abe95e2547892b2a565875872
+    m_Address: SpaceBackground1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: 9f0bee5d7cb432340abe4026294a7cdf
+    m_Address: SpaceBackground2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: e134074b3add93f4bb34134e8edc6f24
+    m_Address: SpaceBackground3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: 0b4e88bebdc9d144eafd85a88772ff08
+    m_Address: SpaceBackground4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: 2242c756a0fef1840af2bf9d00e8e4f1
+    m_Address: SpaceBackground5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: a88f0b24abf0f2d4ab486555af70048a
+    m_Address: SpaceBackground6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: dbf4bc4ca265e4440bb2f56b09544f46
+    m_Address: SpaceBackground7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: 8b3b390241f1f294285916157de6d37d
+    m_Address: SpaceBackground8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: e730f3fc1f020684f8eb1e29c9adf9ef
+    m_Address: SpaceBackground9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: 16a143f50a26a3d4cb9c14d90e740c72
+    m_Address: SpaceBackground10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  - m_GUID: 656d2eff8917921448ad0fa382fd34d4
+    m_Address: SpaceBackground11
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpaceBackground
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 017c30f892ddb4b4aae77bf77a9c55c8, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 439e0693455f624409c10eebd30ff673, type: 2}
+    - {fileID: 11400000, guid: 4eda59a8f1532244b9811e9751f84941, type: 2}

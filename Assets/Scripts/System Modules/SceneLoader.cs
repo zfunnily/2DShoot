@@ -15,6 +15,7 @@ public class SceneLoader : PersistenSingleton<SceneLoader>
     static SceneInstance loadSceneInstance;
     public const string GAMEPLAY = "GamePlay";
     public const string MAIN_MENE = "MainMenu";
+    public const string SCORING = "Scoring";
 
     public static event System.Action LoadingStarted;
     public static event System.Action<float> IsLoading;
@@ -72,6 +73,12 @@ public class SceneLoader : PersistenSingleton<SceneLoader>
         StartCoroutine(LoadingCoroutine(MAIN_MENE));
     }
 
+    public void LoadScoringScene()
+    {
+        StopAllCoroutines();
+        StartCoroutine(LoadingCoroutine(SCORING));
+    }
+
     static IEnumerator LoadAddressableSceneCoroutine(object sceneKey, bool showLoadingScreen, bool laodSceneAdditively, bool activateOnLoad)
     {
         LoadSceneMode loadSceneMode = laodSceneAdditively ? LoadSceneMode.Additive : LoadSceneMode.Single;
@@ -113,5 +120,4 @@ public class SceneLoader : PersistenSingleton<SceneLoader>
     {
         Instance.StartCoroutine(LoadAddressableSceneCoroutine(sceneKey, showLoadingScreen, loadSceneAdditively, activateOnLoad));
     }
-
 }
