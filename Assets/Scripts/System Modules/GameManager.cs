@@ -15,6 +15,7 @@ public enum GameState
 
 public class GameManager : PersistenSingleton<GameManager>
 {
+    public static System.Action onGameOver;
     const string gameManager = "Game Manager";
     public static GameState GameState {get => Instance.gameState; set => Instance.gameState = value; }
     [SerializeField] GameState gameState = GameState.Playing;

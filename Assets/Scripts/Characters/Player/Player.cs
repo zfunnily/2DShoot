@@ -99,6 +99,7 @@ public class Player : Character
         input.onDodge += Dodge;
         input.onOverdrive += Overdrive;
         input.onLaunchMissile += LaunchMissile;
+        input.onConfirmGameOver += ConfirmGameOver;
 
         PlayerOverdrive.on += OverdriveOn;
         PlayerOverdrive.off += OverdriveOff;
@@ -114,6 +115,7 @@ public class Player : Character
         input.onDodge -= Dodge;
         input.onOverdrive -= Overdrive;
         input.onLaunchMissile -= LaunchMissile;
+        input.onConfirmGameOver -= ConfirmGameOver;
 
         PlayerOverdrive.on -= OverdriveOn;
         PlayerOverdrive.off -= OverdriveOff;
@@ -153,6 +155,7 @@ public class Player : Character
 
     public override void Die()
     {
+        GameManager.onGameOver?.Invoke();
         GameManager.GameState = GameState.GameOver;
         statsBar_HUB.UpdateStats(0f, maxHealth);
 
@@ -389,6 +392,10 @@ public class Player : Character
     void LaunchMissile()
     {
         missle.Launch(muzzleMiddle);
+    }
+
+    void ConfirmGameOver()
+    {
     }
 
 }

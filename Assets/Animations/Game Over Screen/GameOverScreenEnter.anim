@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GameOverScreenEnter
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -638,7 +638,7 @@ AnimationClip:
   - time: 2
     functionName: EnableGameOverScreenInput
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 30e5338a887c24f42af62c5519fe40f0, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
