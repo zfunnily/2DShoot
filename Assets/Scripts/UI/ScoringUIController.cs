@@ -19,6 +19,7 @@ public class ScoringUIController : MonoBehaviour
     [SerializeField] Canvas scoringScreenCanvas;
     [SerializeField] Text playerScoreText;
     [SerializeField] Button buttonMainMenue;
+    [SerializeField] Transform highScoreLeaderboardContainer;
 
     void Start()
     {
@@ -59,7 +60,22 @@ public class ScoringUIController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        // TODO: Update high socre leaderboard UI
+        UpdateHighScoreLeaderBoard();
+
+    }
+
+    void UpdateHighScoreLeaderBoard()
+    {
+        var playerScoreList = ScoreManager.Instance.LoadPlayerScoreData().list;
+
+        for (int i = 0; i < highScoreLeaderboardContainer.childCount; i++) 
+        {
+            var child = highScoreLeaderboardContainer.GetChild(i);
+
+            child.Find("Rank").GetComponent<Text>().text = (i+1).ToString();
+            child.Find("Score").GetComponent<Text>().text = playerScoreList[i].score.ToString();
+            child.Find("Name").GetComponent<Text>().text = playerScoreList[i].playerName;
+        }
     }
 
     void OnButtonMainMenueClick() 
