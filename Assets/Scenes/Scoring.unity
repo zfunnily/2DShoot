@@ -1621,6 +1621,7 @@ MonoBehaviour:
   scoringScreenCanvas: {fileID: 1136423720}
   playerScoreText: {fileID: 122102124}
   buttonMainMenue: {fileID: 1310951698}
+  highScoreLeaderboardContainer: {fileID: 2086218171}
 --- !u!1001 &927434410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2065,3 +2066,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 11400000, guid: 734052693cffa8c44a3de8b2b74f2dad, type: 2}
+--- !u!224 &2086218171 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2256882473821769572, guid: 257972d1b67e2d04b8716b0c56c9b12d, type: 3}
+  m_PrefabInstance: {fileID: 743029120}
+  m_PrefabAsset: {fileID: 0}
